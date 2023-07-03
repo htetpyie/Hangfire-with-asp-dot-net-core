@@ -1,0 +1,49 @@
+﻿@using HangFireExample.Features.Blog
+@{ Layout = null; }
+
+<table class="table table-hover mt-3" id="table">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Content</th>
+    </tr>
+    </thead>
+    <tbody>
+   
+    </tbody>
+</table>
+
+<h5 class="mt-4">Job Ids</h5>
+<ol class="mt-2">
+    @foreach (var item in BlogController.jobIdList)
+    {
+        <li>@item</li>
+    }
+</ol>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+ $.ajax({
+        url: "/Blog/BlogTable",
+        type: "Get",
+        dataType: "json",
+        success: function (result) {
+            console.log(result);
+            $('#table tbody').empty();
+            $(result).each(function (index,item){
+                let tr = ` <tr>
+                             <td>${item.blogTitle}</td>
+                             <td>${item.blogAuthor}</td>
+                             <td>${item.blogContent}</td>
+                             
+                         </tr>`;
+                $('#table tbody').append(tr);
+            })
+            
+        },
+        error: function (err) {
+            console.error(err);
+        }
+    });
+</script>
