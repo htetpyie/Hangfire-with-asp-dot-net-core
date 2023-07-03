@@ -1,4 +1,4 @@
-namespace HangFireExample.Models;
+namespace HangfireDotNetCoreExample.Models;
 
 public class ErrorViewModel
 {

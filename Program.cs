@@ -1,8 +1,9 @@
 using Hangfire;
 using Hangfire.LiteDB;
+using Hangfire.Storage;
 using Microsoft.EntityFrameworkCore;
-using HangFireExample.EFDbContext;
-using HangFireExample.HangFire;
+using HangfireDotNetCoreExample.EFDbContext;
+using HangfireDotNetCoreExample.Features.Cron;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,9 +25,10 @@ builder.Services.AddHangfire(
     config => config
     .UseLiteDbStorage(liteDb)
     );
+builder.Services.AddHangfireServer();
 
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
-builder.Services.AddScoped<HangFireService>();
+builder.Services.AddScoped<CronService>();
 
 var app = builder.Build();
 
@@ -50,5 +52,11 @@ app.UseHangfireDashboard();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Blog}/{action=Index}/{id?}");
+
+using var connection = JobStorage.Current.GetConnection();
+foreach (var recurringJob in connection.GetRecurringJobs())
+{
+    RecurringJob.RemoveIfExists(recurringJob.Id);
+}
 
 app.Run();

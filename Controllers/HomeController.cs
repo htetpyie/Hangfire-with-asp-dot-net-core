@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
+using HangfireDotNetCoreExample.Models;
 using Microsoft.AspNetCore.Mvc;
-using HangFireExample.Models;
 
-namespace HangFireExample.Controllers;
+namespace HangfireDotNetCoreExample.Controllers;
 
 public class HomeController : Controller
 {

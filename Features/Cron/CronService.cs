@@ -4,9 +4,9 @@ using Hangfire;
 using Hangfire.Annotations;
 using Hangfire.Storage;
 
-namespace HangFireExample.HangFire;
+namespace HangfireDotNetCoreExample.Features.Cron;
 
-public class HangFireService
+public class CronService
 {
     public void CreateRecurringJob(string jobId,
         [NotNull, InstantHandle] Expression<Action> methodCall,
@@ -14,12 +14,17 @@ public class HangFireService
     {
         try
         {
-            var manager = new RecurringJobManager();
-            manager.AddOrUpdate(
-                jobId,
-                methodCall,
-                cron);
-            manager.TriggerJob(jobId);
+            // var manager = new RecurringJobManager();
+            // manager.AddOrUpdate(
+            //     jobId,
+            //     methodCall,
+            //     cron);
+            // manager.TriggerJob(jobId);
+            RecurringJobOptions options = new RecurringJobOptions()
+            {
+                TimeZone = TimeZoneInfo.FindSystemTimeZoneById("Myanmar Standard Time")
+            };
+            RecurringJob.AddOrUpdate(jobId, methodCall, cron, options);
         }
         catch (Exception e)
         {
@@ -75,12 +80,10 @@ public class HangFireService
     {
         try
         {
-            using (var connection = JobStorage.Current.GetConnection())
+            using var connection = JobStorage.Current.GetConnection();
+            foreach (var recurringJob in connection.GetRecurringJobs())
             {
-                foreach (var recurringJob in connection.GetRecurringJobs())
-                {
-                    RecurringJob.RemoveIfExists(recurringJob.Id);
-                }
+                RecurringJob.RemoveIfExists(recurringJob.Id);
             }
         }
         catch (Exception ex)

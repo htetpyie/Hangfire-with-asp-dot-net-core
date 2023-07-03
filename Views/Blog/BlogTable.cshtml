@@ -1,4 +1,4 @@
-﻿@using HangFireExample.Features.Blog
+﻿@model List<CronModel>
 @{ Layout = null; }
 
 <table class="table table-hover mt-3" id="table">
@@ -10,15 +10,15 @@
     </tr>
     </thead>
     <tbody>
-   
+
     </tbody>
 </table>
 
 <h5 class="mt-4">Job Ids</h5>
 <ol class="mt-2">
-    @foreach (var item in BlogController.jobIdList)
+    @foreach (var item in Model)
     {
-        <li>@item</li>
+        <li>@item.JobId || @item.MethodName</li>
     }
 </ol>
 

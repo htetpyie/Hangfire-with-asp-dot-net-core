@@ -1,55 +1,70 @@
-using HangFireExample.EFDbContext;
-using HangFireExample.Features.Blog;
-using HangFireExample.HangFire;
+using Hangfire;
+using Hangfire.Storage;
+using HangfireDotNetCoreExample.EFDbContext;
+using HangfireDotNetCoreExample.Features.Blog;
+using HangfireDotNetCoreExample.Features.Cron;
+using HangfireDotNetCoreExample.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace HangFireExample.Features.Blog;
+namespace HangfireDotNetCoreExample.Features.Blog;
 
 public class BlogController : Controller
 {
     private readonly AppDbContext _context;
-    private readonly HangFireService _hangFireService;
-    public static List<string> jobIdList = new List<string>();
+    private readonly CronService _cronService;
 
     public BlogController(AppDbContext context,
-        HangFireService hangFireService)
+        CronService cronService)
     {
         _context = context;
-        _hangFireService = hangFireService;
+        _cronService = cronService;
     }
 
     public IActionResult Index()
     {
-        return View();
+        using var connection = JobStorage.Current.GetConnection();
+        List<CronModel> lstCron = connection.GetRecurringJobs()
+            .Select(x => Change(x))
+            .ToList();
+        return View(lstCron);
     }
 
-    public IActionResult RunCron(string cron)
+    private CronModel Change(RecurringJobDto recurringJobDto)
     {
-        Random rand = new Random();
-        string jobId = rand.Next(10, 100).ToString();
-        _hangFireService.CreateRecurringJob(
-            jobId,
-            () => CreateBlog()
+        return new CronModel()
+        {
+            JobId = recurringJobDto.Id,
+            MethodName = $"{recurringJobDto.Job.Method.DeclaringType}.{recurringJobDto.Job.Method.Name}"
+        };
+    }
+
+    public async Task<IActionResult> RunCron(string cron)
+    {
+        // Random rand = new Random();
+        // string jobId = rand.Next(10, 100).ToString();
+        string jobId = Guid.NewGuid().ToString("N");
+        _cronService.CreateRecurringJob(
+            jobId, () => CreateBlog()
             , cron);
-        jobIdList.Add(jobId);
+        // jobIdList.Add(jobId);
         return RedirectToAction(nameof(Index));
     }
 
     public IActionResult StopCron(string jobId)
     {
-        _hangFireService.StopRecurringJob(jobId);
-        jobIdList.Remove(jobId);
+        _cronService.StopRecurringJob(jobId);
+        // jobIdList.Remove(jobId);
         return RedirectToAction(nameof(Index));
     }
 
     public IActionResult BlogTable()
     {
         var list = _context.Blog.AsNoTracking().ToList();
-        return Json(list ?? new List<BlogDataModel>());
+        return Json(list);
     }
 
-    public void CreateBlog()
+    public BlogDataModel CreateBlog()
     {
         BlogDataModel model = new BlogDataModel
         {
@@ -60,5 +75,6 @@ public class BlogController : Controller
 
         _context.Blog.Add(model);
         _context.SaveChanges();
+        return model;
     }
 }

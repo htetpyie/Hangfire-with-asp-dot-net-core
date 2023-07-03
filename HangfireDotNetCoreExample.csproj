@@ -16,8 +16,4 @@
       <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0-preview.5.23280.1" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Features\" />
-    </ItemGroup>
-
 </Project>

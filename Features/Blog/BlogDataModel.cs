@@ -1,9 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace HangFireExample.Features.Blog;
+namespace HangfireDotNetCoreExample.Features.Blog;
 
-[Table("Tbl_Blog")]
+// [Table("Tbl_Blog")]
+[Table("Tbl_Hangfire_Blog")]
 public class BlogDataModel
 {
     [Key] [Column("blog_id")] public int BlogId { get; set; }

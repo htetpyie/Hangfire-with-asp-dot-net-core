@@ -1,7 +1,7 @@
-using HangFireExample.Features.Blog;
+using HangfireDotNetCoreExample.Features.Blog;
 using Microsoft.EntityFrameworkCore;
 
-namespace HangFireExample.EFDbContext;
+namespace HangfireDotNetCoreExample.EFDbContext;
 
 public class AppDbContext: DbContext
 {
