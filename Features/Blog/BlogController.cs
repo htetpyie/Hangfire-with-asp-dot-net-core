@@ -42,11 +42,14 @@ public class BlogController : Controller
 
     public async Task<BlogDataModel> CreateBlog()
     {
+        int blogCount = _liteDbService
+            .GetList<BlogDataModel>()
+            .Count() + 1;
         BlogDataModel model = new BlogDataModel
         {
-            BlogAuthor = "Blog Author",
-            BlogTitle = "Blog Title",
-            BlogContent = "Blog Content",
+            BlogAuthor = "Blog Author " + blogCount,
+            BlogTitle = "Blog Title " + blogCount,
+            BlogContent = "Blog Content " + blogCount,
         };
         try
         {
@@ -64,13 +67,10 @@ public class BlogController : Controller
 
     public async Task<IActionResult> RunCron(string cron)
     {
-        // Random rand = new Random();
-        // string jobId = rand.Next(10, 100).ToString();
         string jobId = Guid.NewGuid().ToString("N");
         _cronService.CreateRecurringJob(
             jobId, () => CreateBlog()
             , cron);
-        // jobIdList.Add(jobId);
         return RedirectToAction(nameof(Index));
     }
 
@@ -81,10 +81,16 @@ public class BlogController : Controller
         return RedirectToAction(nameof(Index));
     }
 
+    public IActionResult StopAllTasks()
+    {
+        _cronService.RemoveAllRecurringJob();
+        return RedirectToAction(nameof(Index));
+    }
+
     private async Task SendList()
     {
         var list = GetList();
-        await _hubContext.Clients.All.SendAsync("RecieveList", list);
+        await _hubContext.Clients.All.SendAsync("ReceiveList", list);
     }
 
     private List<BlogDataModel> GetList()

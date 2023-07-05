@@ -32,6 +32,10 @@
                 </div>
             </form>
         </div>
+
+        <div class="col-md-3">
+              <a class="btn btn-outline-danger" asp-action="StopAllTasks">Stop All Jobs</a>
+        </div>
     </div>
 
     @await Html.PartialAsync("BlogTable", Model)

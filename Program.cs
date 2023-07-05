@@ -2,6 +2,7 @@ using Hangfire;
 using Hangfire.LiteDB;
 using Hangfire.Storage;
 using HangfireDotNetCoreExample.DbService;
+using HangfireDotNetCoreExample.Features.Blog;
 using HangfireDotNetCoreExample.Features.Cron;
 using HangfireDotNetCoreExample.Features.SignalRHubs;
 

@@ -1,11 +1,14 @@
 using System.Linq.Expressions;
+using System.Net;
 using System.Reflection.PortableExecutable;
+using HangfireDotNetCoreExample.Features.DevCodes;
 using LiteDB;
 using Microsoft.Extensions.Options;
+using HostingEnvironmentExtensions = Microsoft.AspNetCore.Hosting.HostingEnvironmentExtensions;
 
 namespace HangfireDotNetCoreExample.DbService;
 
-public class LiteDbService 
+public class LiteDbService
 {
     private LiteDatabase _db;
 
@@ -46,14 +49,52 @@ public class LiteDbService
 
     private void CreateConnection(IOptions<LiteDbOption> option)
     {
-        string folderPath = Path.Combine(
-            AppDomain
-                .CurrentDomain
-                .BaseDirectory, option.Value.DatabaseLocation);
-        if (!Directory.Exists(folderPath))
-            Directory.CreateDirectory(folderPath);
+        string dbName = "app.db";
+        string folderPath = GetDbFolderPath(option);
+        
+        DeleteDbFile(folderPath);
+        
+        if (!folderPath.IsNullOrEmpty() && Directory.Exists(folderPath)) 
+            _db = new LiteDatabase(folderPath + $"/{dbName}");
+    }
 
-        _db = new LiteDatabase(folderPath+"/app.db");
+    private void DeleteDbFile(string folderPath)
+    {
+        try
+        {
+            if (Directory.Exists(folderPath))
+            {
+                foreach (var file in Directory.GetFiles(folderPath))
+                {
+                    File.Delete(file);
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
+
+    private string GetDbFolderPath(IOptions<LiteDbOption> option)
+    {
+        string folderPath = "";
+        try
+        {
+            folderPath = Path.Combine(
+                AppDomain
+                    .CurrentDomain
+                    .BaseDirectory, option.Value.DatabaseLocation);
+            if (!Directory.Exists(folderPath))
+                Directory.CreateDirectory(folderPath);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+
+        return folderPath;
     }
 }
 
