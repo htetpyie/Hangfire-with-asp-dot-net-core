@@ -1,9 +1,12 @@
+using System.Diagnostics;
 using Hangfire;
 using Hangfire.Storage;
 using HangfireDotNetCoreExample.DbService;
 using HangfireDotNetCoreExample.Features.Cron;
+using HangfireDotNetCoreExample.Features.SignalRHubs;
 using HangfireDotNetCoreExample.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 
 namespace HangfireDotNetCoreExample.Features.Blog;
 
@@ -11,13 +14,15 @@ public class BlogController : Controller
 {
     private readonly CronService _cronService;
     private readonly LiteDbService _liteDbService;
+    private readonly IHubContext<BlogHub> _hubContext;
 
     public BlogController(
-        CronService cronService, 
-        LiteDbService liteDbService)
+        CronService cronService,
+        LiteDbService liteDbService, IHubContext<BlogHub> hub)
     {
         _cronService = cronService;
         _liteDbService = liteDbService;
+        _hubContext = hub;
     }
 
     public IActionResult Index()
@@ -29,13 +34,32 @@ public class BlogController : Controller
         return View(lstCron);
     }
 
-    private CronModel Change(RecurringJobDto recurringJobDto)
+    public IActionResult BlogTable()
     {
-        return new CronModel()
+        var list = GetList();
+        return Json(list);
+    }
+
+    public async Task<BlogDataModel> CreateBlog()
+    {
+        BlogDataModel model = new BlogDataModel
         {
-            JobId = recurringJobDto.Id,
-            MethodName = $"{recurringJobDto.Job.Method.DeclaringType}.{recurringJobDto.Job.Method.Name}"
+            BlogAuthor = "Blog Author",
+            BlogTitle = "Blog Title",
+            BlogContent = "Blog Content",
         };
+        try
+        {
+            _liteDbService.Insert(model);
+            await SendList();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+
+        return model;
     }
 
     public async Task<IActionResult> RunCron(string cron)
@@ -57,22 +81,33 @@ public class BlogController : Controller
         return RedirectToAction(nameof(Index));
     }
 
-    public IActionResult BlogTable()
+    private async Task SendList()
     {
-        var list = _liteDbService.GetList<BlogDataModel>();
-        return Json(list);
+        var list = GetList();
+        await _hubContext.Clients.All.SendAsync("RecieveList", list);
     }
 
-    public BlogDataModel CreateBlog()
+    private List<BlogDataModel> GetList()
     {
-        BlogDataModel model = new BlogDataModel
+        List<BlogDataModel> list = new List<BlogDataModel>();
+        try
         {
-            BlogAuthor = "Blog Author",
-            BlogTitle = "Blog Title",
-            BlogContent = "Blog Content",
-        };
+            list = _liteDbService.GetList<BlogDataModel>();
+        }
+        catch (Exception e)
+        {
+            Debug.WriteLine("Exception in List => " + e.Message);
+        }
 
-        _liteDbService.Insert(model);
-        return model;
+        return list;
+    }
+
+    private CronModel Change(RecurringJobDto recurringJobDto)
+    {
+        return new CronModel()
+        {
+            JobId = recurringJobDto.Id,
+            MethodName = $"{recurringJobDto.Job.Method.DeclaringType}.{recurringJobDto.Job.Method.Name}"
+        };
     }
 }

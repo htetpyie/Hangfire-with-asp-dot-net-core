@@ -3,6 +3,7 @@ using Hangfire.LiteDB;
 using Hangfire.Storage;
 using HangfireDotNetCoreExample.DbService;
 using HangfireDotNetCoreExample.Features.Cron;
+using HangfireDotNetCoreExample.Features.SignalRHubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,11 +20,10 @@ builder.Services.AddHangfire(
     .UseLiteDbStorage(liteDb)
     );
 builder.Services.AddHangfireServer();
-
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.AddScoped<CronService>();
 builder.Services.AddSingleton<LiteDbService>();
-
+builder.Services.AddSignalR();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -46,6 +46,7 @@ app.UseHangfireDashboard();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Blog}/{action=Index}/{id?}");
+app.MapHub<BlogHub>("/blogHub");
 
 using var connection = JobStorage.Current.GetConnection();
 foreach (var recurringJob in connection.GetRecurringJobs())
