@@ -1,6 +1,7 @@
 using Hangfire;
 using Hangfire.LiteDB;
 using Hangfire.Storage;
+using HangfireDotNetCoreExample.DbService;
 using HangfireDotNetCoreExample.Features.Cron;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.Configure<LiteDbOption>(
+    builder.Configuration.GetSection("LiteDbOptions"));
 
 //using HangFire
 string liteDb = AppDomain.CurrentDomain.BaseDirectory + "HangFireLite.db";
@@ -19,6 +22,7 @@ builder.Services.AddHangfireServer();
 
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.AddScoped<CronService>();
+builder.Services.AddSingleton<LiteDbService>();
 
 var app = builder.Build();
 

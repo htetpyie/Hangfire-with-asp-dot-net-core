@@ -1,5 +1,6 @@
 using Hangfire;
 using Hangfire.Storage;
+using HangfireDotNetCoreExample.DbService;
 using HangfireDotNetCoreExample.Features.Cron;
 using HangfireDotNetCoreExample.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -9,11 +10,14 @@ namespace HangfireDotNetCoreExample.Features.Blog;
 public class BlogController : Controller
 {
     private readonly CronService _cronService;
+    private readonly LiteDbService _liteDbService;
 
     public BlogController(
-        CronService cronService)
+        CronService cronService, 
+        LiteDbService liteDbService)
     {
         _cronService = cronService;
+        _liteDbService = liteDbService;
     }
 
     public IActionResult Index()
@@ -55,7 +59,7 @@ public class BlogController : Controller
 
     public IActionResult BlogTable()
     {
-        var list = _context.Blog.AsNoTracking().ToList();
+        var list = _liteDbService.GetList<BlogDataModel>();
         return Json(list);
     }
 
@@ -68,8 +72,7 @@ public class BlogController : Controller
             BlogContent = "Blog Content",
         };
 
-        _context.Blog.Add(model);
-        _context.SaveChanges();
+        _liteDbService.Insert(model);
         return model;
     }
 }
