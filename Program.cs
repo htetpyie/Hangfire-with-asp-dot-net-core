@@ -1,8 +1,6 @@
 using Hangfire;
 using Hangfire.LiteDB;
 using Hangfire.Storage;
-using Microsoft.EntityFrameworkCore;
-using HangfireDotNetCoreExample.EFDbContext;
 using HangfireDotNetCoreExample.Features.Cron;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,14 +8,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<AppDbContext>(
-    opt =>
-        opt.UseSqlServer(
-            builder
-                .Configuration
-                .GetConnectionString("DbConnection")
-        )
-);
 
 //using HangFire
 string liteDb = AppDomain.CurrentDomain.BaseDirectory + "HangFireLite.db";

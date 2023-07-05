@@ -1,23 +1,18 @@
 using Hangfire;
 using Hangfire.Storage;
-using HangfireDotNetCoreExample.EFDbContext;
-using HangfireDotNetCoreExample.Features.Blog;
 using HangfireDotNetCoreExample.Features.Cron;
 using HangfireDotNetCoreExample.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace HangfireDotNetCoreExample.Features.Blog;
 
 public class BlogController : Controller
 {
-    private readonly AppDbContext _context;
     private readonly CronService _cronService;
 
-    public BlogController(AppDbContext context,
+    public BlogController(
         CronService cronService)
     {
-        _context = context;
         _cronService = cronService;
     }
 
