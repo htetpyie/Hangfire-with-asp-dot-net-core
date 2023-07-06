@@ -1,0 +1,133 @@
+﻿@model PageSettingModel
+@{
+    string url = Model.PageUrl;
+    int pageNo = Model.PageNo;
+    int totalPageNo = Model.TotalPageNo;
+    int pageSize = Model.PageSize;
+}
+<nav aria-label="...">
+    <ul class="pagination">
+        @if (pageNo > 1)
+        {
+            <li class="page-item">
+                <a class="page-link" href="javascript:void(0);" onclick='loadPage("@string.Format(url, pageNo - 1)")' tabindex="-1">Previous</a>
+            </li>
+        }
+        else
+        {
+            <li class="page-item disabled">
+                <a class="page-link" href="javascript:void(0);" tabindex="-1">Previous</a>
+            </li>
+        }
+
+        @if (totalPageNo < 9)
+        {
+            @for (int i = 1; i <= totalPageNo; i++)
+            {
+                if (i == pageNo)
+                {
+                    <li class="page-item active">
+                        <a class="page-link" href="javascript:void(0);">
+                            @i
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="javascript:void(0);" onclick='loadPage("@string.Format(url, i)")'>@i</a>
+                    </li>
+                }
+            }
+        }
+        else
+        {
+            if (pageNo <= 3 || pageNo >= totalPageNo - 2)
+            {
+                for (int i = 1; i <= 4; i++)
+                {
+                    if (i == pageNo)
+                    {
+                        <li class="page-item active">
+                            <a class="page-link" href="javascript:void(0);">
+                                @i
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="javascript:void(0);" onclick='loadPage("@string.Format(url, i)")'>@i</a>
+                        </li>
+                    }
+                }
+                <li class="page-item">
+                    <a class="page-link" href="javascript:void(0);">...</a>
+                </li>
+                for (int i = totalPageNo - 3; i <= totalPageNo; i++)
+                {
+                    if (i == pageNo)
+                    {
+                        <li class="page-item active">
+                            <a class="page-link" href="javascript:void(0);">
+                                @i
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="javascript:void(0);" onclick='loadPage("@string.Format(url, i)")'>@i</a>
+                        </li>
+                    }
+                }
+            }
+            else
+            {
+                <li class="page-item">
+                    <a class="page-link" href="javascript:void(0);" onclick='loadPage("@string.Format(url, 1)")'>1</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="javascript:void(0);">...</a>
+                </li>
+                @for (int i = pageNo - 2; i <= pageNo + 2; i++)
+                {
+                    if (i == pageNo)
+                    {
+                        <li class="page-item active">
+                            <a class="page-link" href="javascript:void(0);">
+                                @i
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                            <a class="page-link" href="javascript:void(0);" onclick='loadPage("@string.Format(url, i)")'>@i</a>
+                        </li>
+                    }
+                }
+                <li class="page-item">
+                    <a class="page-link" href="javascript:void(0);">...</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="javascript:void(0);" onclick='loadPage("@string.Format(url, totalPageNo)")'>@totalPageNo</a>
+                </li>
+            }
+        }
+
+        @if (pageNo < totalPageNo)
+        {
+            <li class="page-item">
+                <a class="page-link" href="javascript:void(0);" onclick='loadPage("@string.Format(url, pageNo + 1)")' tabindex="-1">Next</a>
+            </li>
+        }
+        else
+        {
+            <li class="page-item disabled">
+                <a class="page-link" href="javascript:void(0);" tabindex="-1">Next</a>
+            </li>
+        }
+
+    </ul>
+</nav>

@@ -69,7 +69,7 @@ public class LiteDbService
         string dbName = "app.db";
         string folderPath = GetDbFolderPath(option);
 
-        DeleteDbFile(folderPath);
+        //DeleteDbFile(folderPath);
 
         if (!folderPath.IsNullOrEmpty() && Directory.Exists(folderPath))
             _db = new LiteDatabase(folderPath + $"/{dbName}");

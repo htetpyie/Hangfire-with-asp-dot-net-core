@@ -1,7 +1,10 @@
-﻿@model List<CronModel>
-@{ Layout = null; }
+﻿@model BlogListResponseModel
+@{
+    Layout = null;
+    string url = "/Blog/BlogTable?pageNo={0}&pageSize={1}&searchParam={2}";
+}
 
-<table class="table table-hover mt-3" id="table">
+<table class="table table-hover mt-3" id="blogTable">
     <thead>
     <tr>
         <th>Title</th>
@@ -10,63 +13,63 @@
     </tr>
     </thead>
     <tbody>
-
+    @foreach (var blog in Model.BlogList)
+    {
+        <tr>
+            <td>@blog.BlogTitle</td>
+            <td>@blog.BlogAuthor</td>
+            <td>@blog.BlogContent</td>
+        </tr>
+    }
     </tbody>
 </table>
-
-<h5 class="mt-4">Job Ids</h5>
-<ol class="mt-2">
-    @foreach (var item in Model)
-    {
-        <li>@item.JobId || @item.MethodName</li>
-    }
-</ol>
+@await Html.PartialAsync("_Pagination",Model.PageSettingModel);
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="~/js/signalr/dist/browser/signalr.js"></script>
 
-<script>
-"use strict";
-
-getTable();
-
-var connection = new signalR.HubConnectionBuilder().withUrl("/blogHub").build();
-
-connection.on("ReceiveList", function (list) {
-    drawBlogTable(list);
-});
-
-connection.start().then(function () {
-    
-}).catch(function (err) {
-    return console.error(err.toString());
-});
-
-function getTable(){
-     $.ajax({
-            url: "/Blog/BlogTable",
-            type: "Get",
-            dataType: "json",
-            success: function (result) {
-                drawBlogTable(result);
-            },
-            error: function (err) {
-                console.error(err);
-            }
-        });
-}
-
-function drawBlogTable(tableRows){
-     $('#table tbody').empty();
-                $(tableRows).each(function (index,item){
-                    let tr = ` <tr>
-                                 <td>${item.blogTitle}</td>
-                                 <td>${item.blogAuthor}</td>
-                                 <td>${item.blogContent}</td>
-                                 
-                             </tr>`;
-                    $('#table tbody').append(tr);
-                })
-}
-
-</script>
+@* <script> *@
+@* "use strict"; *@
+@* *@
+@* getTable(); *@
+@* *@
+@* var connection = new signalR.HubConnectionBuilder().withUrl("/blogHub").build(); *@
+@* *@
+@* connection.on("ReceiveList", function (list) { *@
+@*     drawBlogTable(list); *@
+@* }); *@
+@* *@
+@* connection.start().then(function () { *@
+@*      *@
+@* }).catch(function (err) { *@
+@*     return console.error(err.toString()); *@
+@* }); *@
+@* *@
+@* function getTable(){ *@
+@*      $.ajax({ *@
+@*             url: "/Blog/BlogTable", *@
+@*             type: "Get", *@
+@*             dataType: "json", *@
+@*             success: function (result) { *@
+@*                 drawBlogTable(result); *@
+@*             }, *@
+@*             error: function (err) { *@
+@*                 console.error(err); *@
+@*             } *@
+@*         }); *@
+@* } *@
+@* *@
+@* function drawBlogTable(tableRows){ *@
+@*      $('#table tbody').empty(); *@
+@*                 $(tableRows).each(function (index,item){ *@
+@*                     let tr = ` <tr> *@
+@*                                  <td>${item.blogTitle}</td> *@
+@*                                  <td>${item.blogAuthor}</td> *@
+@*                                  <td>${item.blogContent}</td> *@
+@*                                   *@
+@*                              </tr>`; *@
+@*                     $('#table tbody').append(tr); *@
+@*                 }) *@
+@* } *@
+@* *@
+@* </script> *@

@@ -1,6 +1,5 @@
 using System.Diagnostics;
 using System.Linq.Expressions;
-using Hangfire;
 using Hangfire.Storage;
 using HangfireDotNetCoreExample.DbService;
 using HangfireDotNetCoreExample.Features.Cron;
@@ -21,7 +20,8 @@ public class BlogController : Controller
 
     public BlogController(
         CronService cronService,
-        LiteDbService liteDbService, IHubContext<BlogHub> hub)
+        LiteDbService liteDbService,
+        IHubContext<BlogHub> hub)
     {
         _cronService = cronService;
         _liteDbService = liteDbService;
@@ -30,17 +30,32 @@ public class BlogController : Controller
 
     public IActionResult Index()
     {
-        using var connection = JobStorage.Current.GetConnection();
-        List<CronModel> lstCron = connection.GetRecurringJobs()
-            .Select(x => Change(x))
-            .ToList();
-        return View(lstCron);
+        // using var connection = JobStorage.Current.GetConnection();
+        // List<CronModel> lstCron = connection.GetRecurringJobs()
+        //     .Select(x => Change(x))
+        //     .ToList();
+        // return View(lstCron);
+        var list = GetList();
+        var pageSetting = new PageSettingModel
+        {
+            PageNo = 1,
+            PageSize = 10,
+            SearchParam = "",
+            TotalRowCount = GetTotalRowCount("searchParam")
+        };
+        BlogListResponseModel response = new BlogListResponseModel
+        {
+            BlogList = list,
+            PageSettingModel = pageSetting
+        };
+        
+        return View(response);
     }
 
     public IActionResult BlogTable(
-        int pageNo,
-        int pageSize, 
-        string searchParam)
+        int pageNo = 1,
+        int pageSize = 10, 
+        string searchParam = "")
     {
         var list = GetList(pageNo, pageSize, searchParam);
         var pageSetting = new PageSettingModel
@@ -56,7 +71,7 @@ public class BlogController : Controller
             PageSettingModel = pageSetting
         };
         
-        return Json(response);
+        return View(response);
     }
 
     public async Task<BlogDataModel> CreateBlog()
