@@ -41,7 +41,7 @@ public class BlogController : Controller
             PageNo = 1,
             PageSize = 10,
             SearchParam = "",
-            TotalRowCount = GetTotalRowCount("searchParam")
+            TotalRowCount = GetTotalRowCount("")
         };
         BlogListResponseModel response = new BlogListResponseModel
         {

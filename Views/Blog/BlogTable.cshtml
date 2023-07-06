@@ -2,7 +2,9 @@
 @{
     Layout = null;
     string url = "/Blog/BlogTable?pageNo={0}&pageSize={1}&searchParam={2}";
+    Model.PageSettingModel.PageUrl = url;
 }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" integrity="sha512-t4GWSVZO1eC8BM339Xd7Uphw5s17a86tIZIj8qRxhnKub6WoyhnrxeCIMeAqBPgdZGlCcG2PrZjMc+Wr78+5Xg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
 <table class="table table-hover mt-3" id="blogTable">
     <thead>
@@ -22,11 +24,23 @@
         </tr>
     }
     </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="3">
+            @await Html.PartialAsync("_Pagination", Model.PageSettingModel)
+        </td>
+    </tr>
+    </tfoot>
 </table>
-@await Html.PartialAsync("_Pagination",Model.PageSettingModel);
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 <script src="~/js/signalr/dist/browser/signalr.js"></script>
+
+<script>
+ function loadPage(url){
+     $('#blogTable').load(url);
+ }
+</script>
 
 @* <script> *@
 @* "use strict"; *@

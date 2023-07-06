@@ -4,13 +4,14 @@
     int pageNo = Model.PageNo;
     int totalPageNo = Model.TotalPageNo;
     int pageSize = Model.PageSize;
+    string searchParam = Model.SearchParam ?? "";
 }
 <nav aria-label="...">
     <ul class="pagination">
         @if (pageNo > 1)
         {
             <li class="page-item">
-                <a class="page-link" href="javascript:void(0);" onclick='loadPage("@string.Format(url, pageNo - 1)")' tabindex="-1">Previous</a>
+                <a class="page-link" href="javascript:void(0);" onclick='loadPage("@string.Format(url, pageNo - 1, pageSize, searchParam)")' tabindex="-1">Previous</a>
             </li>
         }
         else
@@ -35,7 +36,7 @@
                 else
                 {
                     <li class="page-item">
-                        <a class="page-link" href="javascript:void(0);" onclick='loadPage("@string.Format(url, i)")'>@i</a>
+                        <a class="page-link" href="javascript:void(0);" onclick='loadPage("@string.Format(url, i, pageSize, searchParam)")'>@i</a>
                     </li>
                 }
             }
@@ -57,7 +58,7 @@
                     else
                     {
                         <li class="page-item">
-                            <a class="page-link" href="javascript:void(0);" onclick='loadPage("@string.Format(url, i)")'>@i</a>
+                            <a class="page-link" href="javascript:void(0);" onclick='loadPage("@string.Format(url, i, pageSize, searchParam)")'>@i</a>
                         </li>
                     }
                 }
@@ -77,7 +78,7 @@
                     else
                     {
                         <li class="page-item">
-                            <a class="page-link" href="javascript:void(0);" onclick='loadPage("@string.Format(url, i)")'>@i</a>
+                            <a class="page-link" href="javascript:void(0);" onclick='loadPage("@string.Format(url, i, pageSize, searchParam)")'>@i</a>
                         </li>
                     }
                 }
@@ -103,7 +104,7 @@
                     else
                     {
                         <li class="page-item">
-                            <a class="page-link" href="javascript:void(0);" onclick='loadPage("@string.Format(url, i)")'>@i</a>
+                            <a class="page-link" href="javascript:void(0);" onclick='loadPage("@string.Format(url, i, pageSize, searchParam)")'>@i</a>
                         </li>
                     }
                 }
@@ -119,7 +120,7 @@
         @if (pageNo < totalPageNo)
         {
             <li class="page-item">
-                <a class="page-link" href="javascript:void(0);" onclick='loadPage("@string.Format(url, pageNo + 1)")' tabindex="-1">Next</a>
+                <a class="page-link" href="javascript:void(0);" onclick='loadPage("@string.Format(url, pageNo + 1, pageSize, searchParam)")' tabindex="-1">Next</a>
             </li>
         }
         else
