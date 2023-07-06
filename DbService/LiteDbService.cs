@@ -29,6 +29,23 @@ public class LiteDbService
             .ToList();
     }
 
+    public List<T> GetPagination<T>(int pageNo,
+        int pageSize,
+        Expression<Func<T, bool>> predicate)
+    {
+        int skip = (pageNo - 1) * pageSize;
+        var list = _db.GetCollection<T>()
+            .Find(predicate, skip, pageSize)
+            .ToList();
+
+        return list;
+    }
+
+    public int GetTotalRowCount<T>(Expression<Func<T, bool>> predicate)
+    {
+        return _db.GetCollection<T>().Count(predicate);
+    }
+
     public void Insert<T>(T model)
     {
         _db.GetCollection<T>()
@@ -51,10 +68,10 @@ public class LiteDbService
     {
         string dbName = "app.db";
         string folderPath = GetDbFolderPath(option);
-        
+
         DeleteDbFile(folderPath);
-        
-        if (!folderPath.IsNullOrEmpty() && Directory.Exists(folderPath)) 
+
+        if (!folderPath.IsNullOrEmpty() && Directory.Exists(folderPath))
             _db = new LiteDatabase(folderPath + $"/{dbName}");
     }
 

@@ -1,8 +1,11 @@
 using System.Diagnostics;
+using System.Linq.Expressions;
 using Hangfire;
 using Hangfire.Storage;
 using HangfireDotNetCoreExample.DbService;
 using HangfireDotNetCoreExample.Features.Cron;
+using HangfireDotNetCoreExample.Features.DevCodes;
+using HangfireDotNetCoreExample.Features.Pagination;
 using HangfireDotNetCoreExample.Features.SignalRHubs;
 using HangfireDotNetCoreExample.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -34,10 +37,26 @@ public class BlogController : Controller
         return View(lstCron);
     }
 
-    public IActionResult BlogTable()
+    public IActionResult BlogTable(
+        int pageNo,
+        int pageSize, 
+        string searchParam)
     {
-        var list = GetList();
-        return Json(list);
+        var list = GetList(pageNo, pageSize, searchParam);
+        var pageSetting = new PageSettingModel
+        {
+            PageNo = pageNo,
+            PageSize = pageSize,
+            SearchParam = searchParam,
+            TotalRowCount = GetTotalRowCount(searchParam)
+        };
+        BlogListResponseModel response = new BlogListResponseModel
+        {
+            BlogList = list,
+            PageSettingModel = pageSetting
+        };
+        
+        return Json(response);
     }
 
     public async Task<BlogDataModel> CreateBlog()
@@ -90,15 +109,23 @@ public class BlogController : Controller
     private async Task SendList()
     {
         var list = GetList();
-        await _hubContext.Clients.All.SendAsync("ReceiveList", list);
+        await _hubContext
+            .Clients
+            .All
+            .SendAsync("ReceiveList", list);
     }
 
-    private List<BlogDataModel> GetList()
+    private List<BlogDataModel> GetList(
+        int pageNo = 1,
+        int pageSize = 10,
+        string searchParam = "")
     {
         List<BlogDataModel> list = new List<BlogDataModel>();
         try
         {
-            list = _liteDbService.GetList<BlogDataModel>();
+            var searchingExpression = GetExpression(searchParam);
+            list = _liteDbService
+                .GetPagination<BlogDataModel>(pageNo, pageSize, searchingExpression);
         }
         catch (Exception e)
         {
@@ -108,6 +135,36 @@ public class BlogController : Controller
         return list;
     }
 
+    private int GetTotalRowCount(string searchParam)
+    {
+        int pageCount = 0;
+        try
+        {
+            var searchingExpression = GetExpression(searchParam);
+            pageCount = _liteDbService.GetTotalRowCount(searchingExpression);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+
+        return pageCount;
+    }
+
+    private Expression<Func<BlogDataModel, bool>> GetExpression(string searchParam)
+    {
+        Expression<Func<BlogDataModel, bool>> searching = (x => true);
+        if (!searchParam.Trim().IsNullOrEmpty())
+        {
+            searchParam = searchParam.Trim().ToLower();
+            searching = (x =>
+                x.BlogTitle.ToLower().Contains(searchParam) ||
+                x.BlogAuthor.ToLower().Contains(searchParam) ||
+                x.BlogContent.ToLower().Contains(searchParam));
+        }
+
+        return searching;
+    }
     private CronModel Change(RecurringJobDto recurringJobDto)
     {
         return new CronModel()
