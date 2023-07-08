@@ -33,7 +33,7 @@ public class BlogController : Controller
         // using var connection = JobStorage.Current.GetConnection();
         // List<CronModel> lstCron = connection.GetRecurringJobs()
         //     .Select(x => Change(x))
-        //     .ToList();
+        //     .ToList(); 
         // return View(lstCron);
         var list = GetList();
         var pageSetting = new PageSettingModel

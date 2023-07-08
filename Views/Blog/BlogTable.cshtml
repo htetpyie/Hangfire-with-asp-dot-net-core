@@ -5,9 +5,25 @@
     Model.PageSettingModel.PageUrl = url;
 }
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" integrity="sha512-t4GWSVZO1eC8BM339Xd7Uphw5s17a86tIZIj8qRxhnKub6WoyhnrxeCIMeAqBPgdZGlCcG2PrZjMc+Wr78+5Xg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
 
 <table class="table table-hover mt-3" id="blogTable">
     <thead>
+    <tr>
+        <td colspan="2"></td>
+        <td>
+            <div class="input-group mb-3">
+                <input type="text" id="searchParam" value="@Model.PageSettingModel.SearchParam"
+                       class="form-control" placeholder="Search.." aria-label=""/>
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-outline-secondary" id="searchBtn">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </div>
+        </td>
+    </tr>
     <tr>
         <th>Title</th>
         <th>Author</th>
@@ -37,6 +53,17 @@
 <script src="~/js/signalr/dist/browser/signalr.js"></script>
 
 <script>
+
+ $('#searchBtn').on("click",()=>{
+     let pageNo = "@Model.PageSettingModel.PageNo";
+     let pageSize = "@Model.PageSettingModel.PageSize";
+     let searchParam = $('#searchParam').val();
+     let url = "@Html.Raw(Model.PageSettingModel.PageUrl)"
+            .replace("{0}",pageNo)
+            .replace("{1}",pageSize)
+            .replace("{2}",searchParam);
+     loadPage(url);
+ })
  function loadPage(url){
      $('#blogTable').load(url);
  }
