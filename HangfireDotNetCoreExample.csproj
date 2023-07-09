@@ -19,4 +19,11 @@
       <Folder Include="wwwroot\theme\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\plugins\custom\typedjs\typedjs.bundle.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\plugins\custom\leaflet\leaflet.bundle.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\plugins\custom\leaflet\leaflet.bundle.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\plugins\custom\formrepeater\formrepeater.bundle.js" />
+    </ItemGroup>
+
 </Project>
