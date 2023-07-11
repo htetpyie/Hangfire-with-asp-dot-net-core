@@ -17,7 +17,7 @@
 
     <ItemGroup>
       <Folder Include="wwwroot\theme\" />
-      <Folder Include="wwwroot\theme\assets\plugins\custom\" />
+      <Folder Include="wwwroot\theme\assets\js\custom\" />
     </ItemGroup>
 
     <ItemGroup>
@@ -183,6 +183,86 @@
       <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\account\settings\profile-details.js" />
       <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\account\settings\signin-methods.js" />
       <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\layout-builder\layout-builder.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\pages\careers\apply.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\pages\general\contact.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\pages\general\pos.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\pages\pricing\general.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\pages\social\feeds.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\pages\user-profile\general.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\calendar\calendar.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\chat\chat.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\contacts\edit-contact.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\contacts\view-contact.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\customers\add.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\customers\list\export.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\customers\list\list.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\customers\update.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\customers\view\add-payment.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\customers\view\adjust-balance.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\customers\view\invoices.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\customers\view\payment-method.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\customers\view\payment-table.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\customers\view\statement.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\ecommerce\catalog\categories.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\ecommerce\catalog\products.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\ecommerce\catalog\save-category.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\ecommerce\catalog\save-product.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\ecommerce\customers\details\add-address.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\ecommerce\customers\details\add-auth-app.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\ecommerce\customers\details\add-one-time-password.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\ecommerce\customers\details\transaction-history.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\ecommerce\customers\details\update-address.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\ecommerce\customers\details\update-password.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\ecommerce\customers\details\update-phone.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\ecommerce\customers\details\update-profile.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\ecommerce\customers\listing\add.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\ecommerce\customers\listing\export.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\ecommerce\customers\listing\listing.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\ecommerce\reports\customer-orders\customer-orders.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\ecommerce\reports\returns\returns.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\ecommerce\reports\sales\sales.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\ecommerce\reports\shipping\shipping.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\ecommerce\reports\views\views.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\ecommerce\sales\listing.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\ecommerce\sales\save-order.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\ecommerce\settings\settings.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\file-manager\list.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\file-manager\settings.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\inbox\compose.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\inbox\listing.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\inbox\reply.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\invoices\create.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\projects\list\list.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\projects\project\project.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\projects\settings\settings.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\projects\targets\targets.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\projects\users\users.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\subscriptions\add\advanced.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\subscriptions\add\customer-select.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\subscriptions\add\products.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\subscriptions\list\export.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\subscriptions\list\list.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\support-center\general.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\support-center\tickets\create.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\user-management\permissions\add-permission.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\user-management\permissions\list.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\user-management\permissions\update-permission.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\user-management\roles\list\add.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\user-management\roles\list\update-role.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\user-management\roles\view\update-role.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\user-management\roles\view\view.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\user-management\users\list\add.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\user-management\users\list\export-users.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\user-management\users\list\table.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\user-management\users\view\add-auth-app.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\user-management\users\view\add-one-time-password.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\user-management\users\view\add-schedule.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\user-management\users\view\add-task.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\user-management\users\view\update-details.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\user-management\users\view\update-email.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\user-management\users\view\update-password.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\user-management\users\view\update-role.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\apps\user-management\users\view\view.js" />
     </ItemGroup>
 
 </Project>
