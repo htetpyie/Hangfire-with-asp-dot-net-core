@@ -53,6 +53,15 @@ public class BlogController : Controller
         return View(response);
     }
 
+    public async Task<IActionResult> GenerateList(int size = 50)
+    {
+        for (int i = 0; i < size; i++)
+        {
+            await CreateBlog();
+        }
+        return RedirectToAction(nameof(Index));
+    }
+    
     public IActionResult BlogTable(
         int pageNo = 1,
         int pageSize = 10, 

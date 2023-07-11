@@ -7,7 +7,7 @@
     <div class="d-flex flex-stack px-4 px-lg-6 py-3 py-lg-8" id="kt_app_sidebar_logo">
         <!--begin::Logo image-->
         <a href="#" class="text-decoration-none text-uppercase">
-            <h3>Hangfire</h3>
+            <h3>Hangfire App</h3>
         </a>
 
         <!--begin::User menu-->
@@ -61,14 +61,14 @@
             <div class="d-flex my-3 mb-lg-6">
                 <!--begin::Stat-->
                 <div class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 me-6">
-                    <span class="fs-6 text-gray-500 fw-bold">Running</span>
+                    <span class="fs-6 text-gray-500 fw-bold">Running Tasks</span>
                     <div class="fs-4 fw-bold text-success">14,350</div>
                 </div>
                 <!--end::Stat-->
                 <!--begin::Stat-->
                 <div class=" border border-light-300 border-dashed rounded min-w-100px w-100 py-2 px-4 ">
 
-                    <span class="fs-6 text-gray-500 fw-bold">Stopped</span>
+                    <span class="fs-6 text-gray-500 fw-bold">Stopped Tasks</span>
                     <div class="fs-4 fw-bold text-danger">14,350</div>
                 </div>
                 <!--end::Stat-->
@@ -106,7 +106,7 @@
                     <!--begin::Col-->
                     <div class="col mb-4">
                         <!--begin::Link-->
-                        <a href="#"
+                        <a asp-action="GenerateList"
                            class="btn btn-icon btn-outline btn-bg-light btn-active-light-primary btn-flex flex-column flex-center w-lg-90px h-lg-90px w-70px h-70px border-gray-200"
                            data-kt-button="true">
                             <!--begin::Icon-->
@@ -125,17 +125,17 @@
                     <!--begin::Col-->
                     <div class="col mb-4">
                         <!--begin::Link-->
-                        <a href="/metronic8/demo23/../demo23/apps/support-center/overview.html"
+                        <a href="#"
                            class="btn btn-icon btn-outline btn-bg-light btn-active-light-primary btn-flex flex-column flex-center w-lg-90px h-lg-90px w-70px h-70px border-gray-200"
                            data-kt-button="true">
                             <!--begin::Icon-->
                             <span class="mb-2">
-                                <i class="ki-outline ki-wifi-square fs-1"></i>
+                                <i class="fa-solid text-danger fa-ban fs-1"></i>
                             </span>
                             <!--end::Icon-->
             
                             <!--begin::Label-->
-                            <span class="fs-8 fw-bold">Clear List</span>
+                            <span class="fs-8 fw-bold text-danger">Clear List</span>
                             <!--end::Label-->
                         </a>
                         <!--end::Link-->
