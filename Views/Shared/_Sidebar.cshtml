@@ -4,166 +4,157 @@
      data-kt-drawer-overlay="true" data-kt-drawer-width="275px" data-kt-drawer-direction="start"
      data-kt-drawer-toggle="#kt_app_sidebar_toggle">
 
-<div class="d-flex flex-stack px-4 px-lg-6 py-3 py-lg-8" id="kt_app_sidebar_logo">
-    <!--begin::Logo image-->
-    <a href="#" class="text-decoration-none text-uppercase">
-        <h3>Hangfire</h3>
-    </a>
+    <div class="d-flex flex-stack px-4 px-lg-6 py-3 py-lg-8" id="kt_app_sidebar_logo">
+        <!--begin::Logo image-->
+        <a href="#" class="text-decoration-none text-uppercase">
+            <h3>Hangfire</h3>
+        </a>
 
-    <!--begin::User menu-->
-    <div class="ms-3">
-        <!--begin::Menu wrapper-->
-        <div class="cursor-pointer position-relative symbol symbol-circle symbol-40px"
-             data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent"
-             data-kt-menu-placement="bottom-end">
-            <img src="~/img/zoro.jpg" alt="user"/>
+        <!--begin::User menu-->
+        <div class="ms-3">
+            <!--begin::Menu wrapper-->
+            <div class="cursor-pointer position-relative symbol symbol-circle symbol-40px"
+                 data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent"
+                 data-kt-menu-placement="bottom-end">
+                <img src="~/img/zoro.jpg" alt="user"/>
 
-            <div
-                class="position-absolute rounded-circle bg-success start-100 top-100 h-8px w-8px ms-n3 mt-n3">
+                <div
+                    class="position-absolute rounded-circle bg-success start-100 top-100 h-8px w-8px ms-n3 mt-n3">
+                </div>
             </div>
+
+            <!--end::Menu wrapper-->
         </div>
-
-        <!--end::Menu wrapper-->
+        <!--end::User menu-->
     </div>
-    <!--end::User menu-->
-</div>
 
-<!--begin::Sidebar nav-->
-<div class="flex-column-fluid px-4 px-lg-8 py-4" id="kt_app_sidebar_nav">
+    <!--begin::Sidebar nav-->
+    <div class="flex-column-fluid px-4 px-lg-8 py-4" id="kt_app_sidebar_nav">
 
-    <!--begin::Nav wrapper-->
-    <div id="kt_app_sidebar_nav_wrapper" class="d-flex flex-column hover-scroll-y pe-4 me-n4"
-         data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-height="auto"
-         data-kt-scroll-dependencies="#kt_app_sidebar_logo, #kt_app_sidebar_footer"
-         data-kt-scroll-wrappers="#kt_app_sidebar, #kt_app_sidebar_nav" data-kt-scroll-offset="5px">
+        <!--begin::Nav wrapper-->
+        <div id="kt_app_sidebar_nav_wrapper" class="d-flex flex-column hover-scroll-y pe-4 me-n4"
+             data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-height="auto"
+             data-kt-scroll-dependencies="#kt_app_sidebar_logo, #kt_app_sidebar_footer"
+             data-kt-scroll-wrappers="#kt_app_sidebar, #kt_app_sidebar_nav" data-kt-scroll-offset="5px">
 
-        <div class="row">
-            <div class="col-md-11">
-                <form class="form-inline" asp-action="RunCron" asp-controller="Blog">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control form-control-sm" placeholder="Cron" name="cron">
-                        <button class="btn btn-sm btn-light btn-success" type="submit" id="create">Run</button>
+            <div class="row">
+                <div class="col-md-12">
+                    <form class="form-inline" asp-action="RunCron" asp-controller="Blog">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control form-control-sm" placeholder="Cron" name="cron">
+                            <button class="btn btn-sm btn-light btn-success" type="submit" id="create">Run</button>
+                        </div>
+                    </form>
+                </div>
+                @* *@
+                @* <div class="col-md-11"> *@
+                @*     <form class="form-inline" asp-action="StopCron" asp-controller="Blog"> *@
+                @*         <div class="input-group mb-3"> *@
+                @*             <input type="text" class="form-control form-control-sm" placeholder="Job Id" name="jobId"> *@
+                @*             <button class="btn btn-sm btn-danger" type="submit">Stop</button> *@
+                @*         </div> *@
+                @*     </form> *@
+                @* </div> *@
+            </div>
+
+            <!--begin::Stats-->
+            <div class="d-flex my-3 mb-lg-6">
+                <!--begin::Stat-->
+                <div class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 me-6">
+                    <span class="fs-6 text-gray-500 fw-bold">Running</span>
+                    <div class="fs-4 fw-bold text-success">14,350</div>
+                </div>
+                <!--end::Stat-->
+                <!--begin::Stat-->
+                <div class=" border border-light-300 border-dashed rounded min-w-100px w-100 py-2 px-4 ">
+
+                    <span class="fs-6 text-gray-500 fw-bold">Stopped</span>
+                    <div class="fs-4 fw-bold text-danger">14,350</div>
+                </div>
+                <!--end::Stat-->
+
+            </div>
+            <!--end::Stats-->
+         
+            <!--begin::Links-->
+            <div class="mb-6">
+                <!--begin::Title-->
+                <h3 class="text-gray-800 fw-bold mb-8">Actions</h3>
+                <!--end::Title-->
+                <!--begin::Row-->
+                <div class="row row-cols-3" data-kt-buttons="true"
+                     data-kt-buttons-target="[data-kt-button]">
+                    <!--begin::Col-->
+                    <div class="col mb-4">
+                        <!--begin::Link-->
+                        <a asp-action="StopAllTasks"
+                           class="btn btn-icon btn-outline btn-bg-light btn-active-light-primary btn-flex flex-column flex-center w-lg-90px h-lg-90px w-70px h-70px border-gray-200"
+                           data-kt-button="true">
+                            <!--begin::Icon-->
+                            <span class="mb-2">
+                                <i class="fa-solid fa-stop text-danger fs-1"></i>
+                            </span>
+                            <!--end::Icon-->
+            
+                            <!--begin::Label-->
+                            <span class="fs-8 fw-bold text-danger">Stop All Tasks</span>
+                            <!--end::Label-->
+                        </a>
+                        <!--end::Link-->
                     </div>
-                </form>
+                    <!--end::Col-->
+                    <!--begin::Col-->
+                    <div class="col mb-4">
+                        <!--begin::Link-->
+                        <a href="#"
+                           class="btn btn-icon btn-outline btn-bg-light btn-active-light-primary btn-flex flex-column flex-center w-lg-90px h-lg-90px w-70px h-70px border-gray-200"
+                           data-kt-button="true">
+                            <!--begin::Icon-->
+                            <span class="mb-2">
+                               <i class="fa-solid fa-list-ol fs-1 text-success"></i>
+                            </span>
+                            <!--end::Icon-->
+            
+                            <!--begin::Label-->
+                            <span class="fs-8 fw-bold text-success">Generate List</span>
+                            <!--end::Label-->
+                        </a>
+                        <!--end::Link-->
+                    </div>
+                    <!--end::Col-->
+                    <!--begin::Col-->
+                    <div class="col mb-4">
+                        <!--begin::Link-->
+                        <a href="/metronic8/demo23/../demo23/apps/support-center/overview.html"
+                           class="btn btn-icon btn-outline btn-bg-light btn-active-light-primary btn-flex flex-column flex-center w-lg-90px h-lg-90px w-70px h-70px border-gray-200"
+                           data-kt-button="true">
+                            <!--begin::Icon-->
+                            <span class="mb-2">
+                                <i class="ki-outline ki-wifi-square fs-1"></i>
+                            </span>
+                            <!--end::Icon-->
+            
+                            <!--begin::Label-->
+                            <span class="fs-8 fw-bold">Clear List</span>
+                            <!--end::Label-->
+                        </a>
+                        <!--end::Link-->
+                    </div>
+                    <!--end::Col-->
+                </div>
+                <!--end::Row-->
             </div>
-            @* *@
-            @* <div class="col-md-11"> *@
-            @*     <form class="form-inline" asp-action="StopCron" asp-controller="Blog"> *@
-            @*         <div class="input-group mb-3"> *@
-            @*             <input type="text" class="form-control form-control-sm" placeholder="Job Id" name="jobId"> *@
-            @*             <button class="btn btn-sm btn-danger" type="submit">Stop</button> *@
-            @*         </div> *@
-            @*     </form> *@
-            @* </div> *@
-        </div>
-
-        <!--begin::Stats-->
-        <div class="d-flex my-3 mb-lg-6">
-            <!--begin::Stat-->
-            <div
-                class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 me-6">
-                <!--begin::Date-->
-                <span class="fs-6 text-gray-500 fw-bold">Budget</span>
-                <!--end::Date-->
-
-                <!--begin::Label-->
-                <div class="fs-2 fw-bold text-success">$14,350</div>
-                <!--end::Label-->
-            </div>
-            <!--end::Stat-->
-            <!--begin::Stat-->
-            <a class=" border border-light-300 border-dashed rounded min-w-100px w-100 py-2 px-4 " asp-action="StopAllTasks">
-                <!--begin::Date-->
-                <span class="fs-3 text-danger text-center fw-bold">
-                      Stop All Task
-                </span>
-                <!--end::Date-->
-            </a>
-            <!--end::Stat-->
+            <!--end::Links-->
 
         </div>
-        <!--end::Stats-->
-
-        @* <!--begin::Links--> *@
-        @* <div class="mb-6"> *@
-        @*     <!--begin::Title--> *@
-        @*     <h3 class="text-gray-800 fw-bold mb-8">Services</h3> *@
-        @*     <!--end::Title--> *@
-        @* *@
-        @*     <!--begin::Row--> *@
-        @*     <div class="row row-cols-3" data-kt-buttons="true" *@
-        @*          data-kt-buttons-target="[data-kt-button]"> *@
-        @*         <!--begin::Col--> *@
-        @*         <div class="col mb-4"> *@
-        @*             <!--begin::Link--> *@
-        @*             <a href="#" *@
-        @*                class="btn btn-icon btn-outline btn-bg-light btn-active-light-primary btn-flex flex-column flex-center w-lg-90px h-lg-90px w-70px h-70px border-gray-200" *@
-        @*                data-kt-button="true"> *@
-        @*                 <!--begin::Icon--> *@
-        @*                 <span class="mb-2"> *@
-        @*                     <i class="ki-outline ki-calendar fs-1"></i> *@
-        @*                 </span> *@
-        @*                 <!--end::Icon--> *@
-        @* *@
-        @*                 <!--begin::Label--> *@
-        @*                 <span class="fs-7 fw-bold">Events</span> *@
-        @*                 <!--end::Label--> *@
-        @*             </a> *@
-        @*             <!--end::Link--> *@
-        @*         </div> *@
-        @*         <!--end::Col--> *@
-        @*         <!--begin::Col--> *@
-        @*         <div class="col mb-4"> *@
-        @*             <!--begin::Link--> *@
-        @*             <a href="#" *@
-        @*                class="btn btn-icon btn-outline btn-bg-light btn-active-light-primary btn-flex flex-column flex-center w-lg-90px h-lg-90px w-70px h-70px border-gray-200" *@
-        @*                data-kt-button="true"> *@
-        @*                 <!--begin::Icon--> *@
-        @*                 <span class="mb-2"> *@
-        @*                     <i class="ki-outline ki-security-check fs-1"></i> *@
-        @*                 </span> *@
-        @*                 <!--end::Icon--> *@
-        @* *@
-        @*                 <!--begin::Label--> *@
-        @*                 <span class="fs-7 fw-bold">Insurance</span> *@
-        @*                 <!--end::Label--> *@
-        @*             </a> *@
-        @*             <!--end::Link--> *@
-        @*         </div> *@
-        @*         <!--end::Col--> *@
-        @*         <!--begin::Col--> *@
-        @*         <div class="col mb-4"> *@
-        @*             <!--begin::Link--> *@
-        @*             <a href="/metronic8/demo23/../demo23/apps/support-center/overview.html" *@
-        @*                class="btn btn-icon btn-outline btn-bg-light btn-active-light-primary btn-flex flex-column flex-center w-lg-90px h-lg-90px w-70px h-70px border-gray-200" *@
-        @*                data-kt-button="true"> *@
-        @*                 <!--begin::Icon--> *@
-        @*                 <span class="mb-2"> *@
-        @*                     <i class="ki-outline ki-wifi-square fs-1"></i> *@
-        @*                 </span> *@
-        @*                 <!--end::Icon--> *@
-        @* *@
-        @*                 <!--begin::Label--> *@
-        @*                 <span class="fs-7 fw-bold">Network</span> *@
-        @*                 <!--end::Label--> *@
-        @*             </a> *@
-        @*             <!--end::Link--> *@
-        @*         </div> *@
-        @*         <!--end::Col--> *@
-        @*     </div> *@
-        @*     <!--end::Row--> *@
-        @* </div> *@
-        @* <!--end::Links--> *@
-
+        <!--end::Nav wrapper-->
     </div>
-    <!--end::Nav wrapper-->
-</div>
-<!--end::Sidebar nav-->
+    <!--end::Sidebar nav-->
 
-<!--begin::Footer-->
-<div class="flex-column-auto d-flex flex-center px-4 px-lg-8 py-3 py-lg-8"
-     id="kt_app_sidebar_footer">
-</div>
-<!--end::Footer-->
+    <!--begin::Footer-->
+    <div class="flex-column-auto d-flex flex-center px-4 px-lg-8 py-3 py-lg-8"
+         id="kt_app_sidebar_footer">
+    </div>
+    <!--end::Footer-->
 </div>
 <!--end::Sidebar-->
