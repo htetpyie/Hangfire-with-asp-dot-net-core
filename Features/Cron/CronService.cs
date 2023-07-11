@@ -92,15 +92,28 @@ public class CronService
         }
     }
 
-    public List<string> GetAllTaskList()
+    public List<CronResponseModel> GetAllTaskList()
     {
-        List<string> result = new();
+        List<CronResponseModel> list = new();
+        
         using var connection = JobStorage.Current.GetConnection();
         foreach (var recurringJob in connection.GetRecurringJobs())
         {
-            var job = recurringJob;
-            RecurringJob.RemoveIfExists(recurringJob.Id);
+            var nextExecutionTime = recurringJob
+                .NextExecution
+                ?.ToString("f");
+            string name = recurringJob.Job.Method.Name;
+
+            var response = new CronResponseModel
+            {
+                JobId = recurringJob.Id,
+                Name = name,
+                NextTime = nextExecutionTime ?? "",
+                IsRunning = true
+            };
+            list.Add(response);
         }
-        return result;
+
+        return list;
     }
 }
