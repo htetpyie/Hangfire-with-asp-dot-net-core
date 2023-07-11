@@ -58,12 +58,17 @@ public class BlogController : Controller
         string searchParam = "")
     {
         var list = GetList(pageNo, pageSize, searchParam);
+        var totalRowCount = GetTotalRowCount(searchParam);
+        if (totalRowCount < pageNo * pageSize)
+        {
+            pageNo = 1;
+        }
         var pageSetting = new PageSettingModel
         {
             PageNo = pageNo,
             PageSize = pageSize,
             SearchParam = searchParam,
-            TotalRowCount = GetTotalRowCount(searchParam)
+            TotalRowCount = totalRowCount
         };
         BlogListResponseModel response = new BlogListResponseModel
         {
@@ -76,14 +81,16 @@ public class BlogController : Controller
 
     public async Task<BlogDataModel> CreateBlog()
     {
-        int blogCount = _liteDbService
+        int latId = _liteDbService
             .GetList<BlogDataModel>()
-            .Count() + 1;
+            .Max(x => x.BlogId)
+            + 1;
+            
         BlogDataModel model = new BlogDataModel
         {
-            BlogAuthor = "Blog Author " + blogCount,
-            BlogTitle = "Blog Title " + blogCount,
-            BlogContent = "Blog Content " + blogCount,
+            BlogAuthor = "Blog Author " + latId,
+            BlogTitle = "Blog Title " + latId,
+            BlogContent = "Blog Content " + latId,
         };
         try
         {

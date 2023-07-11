@@ -11,7 +11,7 @@
                 Blog Lists
             </span>
             <span class="text-gray-400 mt-1 fw-semibold fs-6">
-                Total @Model.PageSettingModel.TotalRowCount.ToString("N")
+                Total @Model.PageSettingModel.TotalRowCount.ToString("N0")
             </span>
         </h3>
         <div class="card-toolbar">
@@ -29,7 +29,7 @@
     <div class="card-body">
         <div class="tab-content">
             <div class="tab-pane fade active show" id="kt_stats_widget_6_tab_1">
-                <div class="table-responsive">
+                <div class="table-responsive hover-scroll-overlay-y" style="height: 400px;">
                     <table class="table table-row-dashed align-middle gs-0 gy-4 my-0">
                         <thead>
                         <tr class="fs-7 fw-bold text-gray-800 border-bottom-0">
