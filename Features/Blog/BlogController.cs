@@ -40,7 +40,7 @@ public class BlogController : Controller
             CronResponse = cronResponse,
             BlogListResponse = blogListResponse
         };
-        
+
         return View(response);
     }
 
@@ -84,7 +84,7 @@ public class BlogController : Controller
 
         return View(response);
     }
-   
+
     public async Task<IActionResult> RunCron(string cron)
     {
         string jobId = Guid.NewGuid().ToString("N");
@@ -132,11 +132,20 @@ public class BlogController : Controller
         }
     }
 
-    public void GetCronCount()
+    public IActionResult GetCronCount()
     {
-        
+        CronCountModel model = new();
+        model.RunningCrons = _cronService
+            .GetAllCronList()
+            .Count(x => x.IsRunning)
+            .ToString("N0");
+        model.StoppedCrons = _cronService
+            .GetAllCronList()
+            .Count(x => !x.IsRunning)
+            .ToString("N0");
+        return Json(model);
     }
-    
+
     private async Task SendList()
     {
         var list = GetList();
