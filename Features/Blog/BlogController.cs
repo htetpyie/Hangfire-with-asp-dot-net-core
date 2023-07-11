@@ -35,6 +35,7 @@ public class BlogController : Controller
         //     .Select(x => Change(x))
         //     .ToList(); 
         // return View(lstCron);
+        var test = _cronService.GetAllTaskList();
         var list = GetList();
         var pageSetting = new PageSettingModel
         {

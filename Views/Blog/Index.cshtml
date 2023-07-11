@@ -29,29 +29,7 @@
 @* <div class="container mt-3"> *@
 @*     <h2>Hangfire Example</h2> *@
 @* *@
-@*     <div class="row"> *@
-@*         <div class="col-md-3"> *@
-@*             <form class="form-inline" asp-action="RunCron" asp-controller="Blog"> *@
-@*                 <div class="input-group mb-3"> *@
-@*                     <input type="text" class="form-control" placeholder="Cron" name="cron"> *@
-@*                     <button class="btn btn-outline-secondary" type="submit" id="create">Create With Cron</button> *@
-@*                 </div> *@
-@*             </form> *@
-@*         </div> *@
-@* *@
-@*         <div class="col-md-3"> *@
-@*             <form class="form-inline" asp-action="StopCron" asp-controller="Blog"> *@
-@*                 <div class="input-group mb-3"> *@
-@*                     <input type="text" class="form-control" placeholder="Job Id" name="jobId"> *@
-@*                     <button class="btn btn-outline-secondary" type="submit">Stop The Job</button> *@
-@*                 </div> *@
-@*             </form> *@
-@*         </div> *@
-@* *@
-@*         <div class="col-md-3"> *@
-@*               <a class="btn btn-outline-danger" asp-action="StopAllTasks">Stop All Jobs</a> *@
-@*         </div> *@
-@*     </div> *@
+@*     
 @* *@
 @*     @await Html.PartialAsync("BlogTable",Model) *@
 @* *@

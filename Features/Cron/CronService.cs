@@ -91,4 +91,16 @@ public class CronService
             Debug.Write("Exception in Remove Jobs" + ex.Message);
         }
     }
+
+    public List<string> GetAllTaskList()
+    {
+        List<string> result = new();
+        using var connection = JobStorage.Current.GetConnection();
+        foreach (var recurringJob in connection.GetRecurringJobs())
+        {
+            var job = recurringJob;
+            RecurringJob.RemoveIfExists(recurringJob.Id);
+        }
+        return result;
+    }
 }
