@@ -3,42 +3,673 @@
     Layout = LayoutServices.GetAppLayout;
 }
 
-<div class="container mt-3">
-    <h2>Hangfire Example</h2>
+<!--begin::Content wrapper-->
+<div class="d-flex flex-column flex-column-fluid">
+<!--begin::Content-->
+<div id="kt_app_content" class="app-content  flex-column-fluid ">
+<!--begin::Content container-->
+<div id="kt_app_content_container" class="app-container  container-xxl ">
+<!--begin::Row-->
+<div class="row g-5 g-xl-10">
+<div class="col-xl-4 mb-xl-10">
+<div class="card card-flush h-xl-100">
+<div class="card-header pt-7">
+    <!--begin::Title-->
+    <h3 class="card-title align-items-start flex-column">
+        <span class="card-label fw-bold text-gray-800">
+            Delivery
+            Tracking
+        </span>
+        <span class="text-gray-400 mt-1 fw-semibold fs-6">
+            56 deliveries in
+            progress
+        </span>
+    </h3>
+    <!--end::Title-->
 
-    <div class="row">
-        <div class="col-md-3">
-            <form class="form-inline" asp-action="RunCron" asp-controller="Blog">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Cron" name="cron">
-                    <button class="btn btn-outline-secondary" type="submit" id="create">Create With Cron</button>
-                </div>
-            </form>
-        </div>
-
-        <div class="col-md-3">
-            <form class="form-inline" asp-action="StopCron" asp-controller="Blog">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Job Id" name="jobId">
-                    <button class="btn btn-outline-secondary" type="submit">Stop The Job</button>
-                </div>
-            </form>
-        </div>
-
-        <div class="col-md-3">
-              <a class="btn btn-outline-danger" asp-action="StopAllTasks">Stop All Jobs</a>
-        </div>
+    <!--begin::Toolbar-->
+    <div class="card-toolbar">
+        <a href="#" class="btn btn-sm btn-light" data-bs-toggle='tooltip'
+           data-bs-dismiss='click' data-bs-custom-class="tooltip-inverse"
+           title="Delivery App is coming soon">
+            View All
+        </a>
     </div>
-
-    @await Html.PartialAsync("BlogTable",Model)
-
-    <h5 class="mt-4">Job Ids</h5>
-    @* <ol class="mt-2"> *@
-    @*     @foreach (var item in Model) *@
-    @*     { *@
-    @*         <li>@item.JobId || @item.MethodName</li> *@
-    @*     } *@
-    @* </ol> *@
+    <!--end::Toolbar-->
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js" integrity="sha512-3dZ9wIrMMij8rOH7X3kLfXAzwtcHpuYpEgQg1OA4QAob1e81H8ntUQmQm3pBudqIoySO5j0tHN4ENzA6+n2r4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<div class="card-body pt-4 px-0">
+<!--begin::Nav-->
+<ul
+    class="nav nav-pills nav-pills-custom item position-relative mx-9 mb-9">
+    <!--begin::Item-->
+    <li class="nav-item col-4 mx-0 p-0">
+        <!--begin::Link-->
+        <a class="nav-link active d-flex justify-content-center w-100 border-0 h-100"
+           data-bs-toggle="pill" href="#kt_list_widget_16_tab_1">
+            <!--begin::Subtitle-->
+            <span class="nav-text text-gray-800 fw-bold fs-6 mb-3">
+                New
+            </span>
+            <!--end::Subtitle-->
 
+            <!--begin::Bullet-->
+            <span
+                class="bullet-custom position-absolute z-index-2 bottom-0 w-100 h-4px bg-primary rounded">
+            </span>
+            <!--end::Bullet-->
+        </a>
+        <!--end::Link-->
+    </li>
+    <!--end::Item-->
+
+    <!--begin::Item-->
+    <li class="nav-item col-4 mx-0 px-0">
+        <!--begin::Link-->
+        <a class="nav-link d-flex justify-content-center w-100 border-0 h-100"
+           data-bs-toggle="pill" href="#kt_list_widget_16_tab_2">
+            <!--begin::Subtitle-->
+            <span class="nav-text text-gray-800 fw-bold fs-6 mb-3">
+                Preparing
+            </span>
+            <!--end::Subtitle-->
+
+            <!--begin::Bullet-->
+            <span
+                class="bullet-custom position-absolute z-index-2 bottom-0 w-100 h-4px bg-primary rounded">
+            </span>
+            <!--end::Bullet-->
+        </a>
+        <!--end::Link-->
+    </li>
+    <!--end::Item-->
+
+    <!--begin::Item-->
+    <li class="nav-item col-4 mx-0 px-0">
+        <!--begin::Link-->
+        <a class="nav-link d-flex justify-content-center w-100 border-0 h-100"
+           data-bs-toggle="pill" href="#kt_list_widget_16_tab_3">
+            <!--begin::Subtitle-->
+            <span class="nav-text text-gray-800 fw-bold fs-6 mb-3">
+                Shipping
+            </span>
+            <!--end::Subtitle-->
+
+            <!--begin::Bullet-->
+            <span
+                class="bullet-custom position-absolute z-index-2 bottom-0 w-100 h-4px bg-primary rounded">
+            </span>
+            <!--end::Bullet-->
+        </a>
+        <!--end::Link-->
+    </li>
+    <!--end::Item-->
+
+    <!--begin::Bullet-->
+    <span
+        class="position-absolute z-index-1 bottom-0 w-100 h-4px bg-light rounded">
+    </span>
+    <!--end::Bullet-->
+</ul>
+<!--end::Nav-->
+
+<!--begin::Tab Content-->
+<div class="tab-content px-9 hover-scroll-overlay-y pe-7 me-3 mb-2"
+     style="height: 390px">
+
+<!--begin::Tap pane-->
+<div class="tab-pane fade show active" id="kt_list_widget_16_tab_1">
+
+<!--begin::Item-->
+<div class="m-0">
+    <!--begin::Timeline-->
+    <div class="timeline ms-n1">
+        <!--begin::Timeline item-->
+        <div class="timeline-item align-items-center mb-4">
+            <!--begin::Timeline line-->
+            <div class="timeline-line w-20px mt-12 mb-n14">
+            </div>
+            <!--end::Timeline line-->
+
+            <!--begin::Timeline icon-->
+            <div class="timeline-icon pt-1"
+                 style="margin-left: 0.7px">
+                <i
+                    class="ki-outline ki-cd fs-2 text-success">
+                </i>
+            </div>
+            <!--end::Timeline icon-->
+
+            <!--begin::Timeline content-->
+            <div class="timeline-content m-0">
+                <!--begin::Label-->
+                <span
+                    class="fs-8 fw-bolder text-success text-uppercase">
+                    Sender
+                </span>
+                <!--begin::Label-->
+
+                <!--begin::Title-->
+                <a href="#"
+                   class="fs-6 text-gray-800 fw-bold d-block text-hover-primary">
+                    Brooklyn
+                    Simmons
+                </a>
+                <!--end::Title-->
+
+                <!--begin::Title-->
+                <span class="fw-semibold text-gray-400">
+                    6391
+                    Elgin St. Celina, Delaware 10299
+                </span>
+                <!--end::Title-->
+            </div>
+            <!--end::Timeline content-->
+        </div>
+        <!--end::Timeline item-->
+
+        <!--begin::Timeline item-->
+        <div class="timeline-item align-items-center">
+            <!--begin::Timeline line-->
+            <div class="timeline-line w-20px"></div>
+            <!--end::Timeline line-->
+
+            <!--begin::Timeline icon-->
+            <div class="timeline-icon pt-1"
+                 style="margin-left: 0.5px">
+                <i
+                    class="ki-outline ki-geolocation fs-2 text-info">
+                </i>
+            </div>
+            <!--end::Timeline icon-->
+
+            <!--begin::Timeline content-->
+            <div class="timeline-content m-0">
+                <!--begin::Label-->
+                <span
+                    class="fs-8 fw-bolder text-info text-uppercase">
+                    Receiver
+                </span>
+                <!--begin::Label-->
+
+                <!--begin::Title-->
+                <a href="#"
+                   class="fs-6 text-gray-800 fw-bold d-block text-hover-primary">
+                    Ralph
+                    Edwards
+                </a>
+                <!--end::Title-->
+
+                <!--begin::Title-->
+                <span class="fw-semibold text-gray-400">
+                    2464
+                    Royal Ln. Mesa, New Jersey 45463
+                </span>
+                <!--end::Title-->
+            </div>
+            <!--end::Timeline content-->
+        </div>
+        <!--end::Timeline item-->
+    </div>
+    <!--end::Timeline-->
+</div>
+<!--end::Item-->
+
+<!--begin::Separator-->
+<div class="separator separator-dashed mt-5 mb-4"></div>
+<!--end::Separator-->
+
+
+<!--begin::Item-->
+<div class="m-0">
+    <!--begin::Timeline-->
+    <div class="timeline ms-n1">
+        <!--begin::Timeline item-->
+        <div class="timeline-item align-items-center mb-4">
+            <!--begin::Timeline line-->
+            <div class="timeline-line w-20px mt-12 mb-n14">
+            </div>
+            <!--end::Timeline line-->
+
+            <!--begin::Timeline icon-->
+            <div class="timeline-icon pt-1"
+                 style="margin-left: 0.7px">
+                <i
+                    class="ki-outline ki-cd fs-2 text-success">
+                </i>
+            </div>
+            <!--end::Timeline icon-->
+
+            <!--begin::Timeline content-->
+            <div class="timeline-content m-0">
+                <!--begin::Label-->
+                <span
+                    class="fs-8 fw-bolder text-success text-uppercase">
+                    Sender
+                </span>
+                <!--begin::Label-->
+
+                <!--begin::Title-->
+                <a href="#"
+                   class="fs-6 text-gray-800 fw-bold d-block text-hover-primary">
+                    Cameron
+                    Williamson
+                </a>
+                <!--end::Title-->
+
+                <!--begin::Title-->
+                <span class="fw-semibold text-gray-400">
+                    3891
+                    Ranchview Dr. Richardson, California
+                    62639
+                </span>
+                <!--end::Title-->
+            </div>
+            <!--end::Timeline content-->
+        </div>
+        <!--end::Timeline item-->
+
+        <!--begin::Timeline item-->
+        <div class="timeline-item align-items-center">
+            <!--begin::Timeline line-->
+            <div class="timeline-line w-20px"></div>
+            <!--end::Timeline line-->
+
+            <!--begin::Timeline icon-->
+            <div class="timeline-icon pt-1"
+                 style="margin-left: 0.5px">
+                <i
+                    class="ki-outline ki-geolocation fs-2 text-info">
+                </i>
+            </div>
+            <!--end::Timeline icon-->
+
+            <!--begin::Timeline content-->
+            <div class="timeline-content m-0">
+                <!--begin::Label-->
+                <span
+                    class="fs-8 fw-bolder text-info text-uppercase">
+                    Receiver
+                </span>
+                <!--begin::Label-->
+
+                <!--begin::Title-->
+                <a href="#"
+                   class="fs-6 text-gray-800 fw-bold d-block text-hover-primary">
+                    Kristin
+                    Watson
+                </a>
+                <!--end::Title-->
+
+                <!--begin::Title-->
+                <span class="fw-semibold text-gray-400">
+                    8502
+                    Preston Rd. Inglewood, Maine 98380
+                </span>
+                <!--end::Title-->
+            </div>
+            <!--end::Timeline content-->
+        </div>
+        <!--end::Timeline item-->
+    </div>
+    <!--end::Timeline-->
+</div>
+<!--end::Item-->
+
+<!--begin::Separator-->
+<div class="separator separator-dashed mt-5 mb-4"></div>
+<!--end::Separator-->
+
+
+<!--begin::Item-->
+<div class="m-0">
+    <!--begin::Timeline-->
+    <div class="timeline ms-n1">
+        <!--begin::Timeline item-->
+        <div class="timeline-item align-items-center mb-4">
+            <!--begin::Timeline line-->
+            <div class="timeline-line w-20px mt-12 mb-n14">
+            </div>
+            <!--end::Timeline line-->
+
+            <!--begin::Timeline icon-->
+            <div class="timeline-icon pt-1"
+                 style="margin-left: 0.7px">
+                <i
+                    class="ki-outline ki-cd fs-2 text-success">
+                </i>
+            </div>
+            <!--end::Timeline icon-->
+
+            <!--begin::Timeline content-->
+            <div class="timeline-content m-0">
+                <!--begin::Label-->
+                <span
+                    class="fs-8 fw-bolder text-success text-uppercase">
+                    Sender
+                </span>
+                <!--begin::Label-->
+
+                <!--begin::Title-->
+                <a href="#"
+                   class="fs-6 text-gray-800 fw-bold d-block text-hover-primary">
+                    Albert
+                    Flores
+                </a>
+                <!--end::Title-->
+
+                <!--begin::Title-->
+                <span class="fw-semibold text-gray-400">
+                    3517 W.
+                    Gray St. Utica, Pennsylvania 57867
+                </span>
+                <!--end::Title-->
+            </div>
+            <!--end::Timeline content-->
+        </div>
+        <!--end::Timeline item-->
+
+        <!--begin::Timeline item-->
+        <div class="timeline-item align-items-center">
+            <!--begin::Timeline line-->
+            <div class="timeline-line w-20px"></div>
+            <!--end::Timeline line-->
+
+            <!--begin::Timeline icon-->
+            <div class="timeline-icon pt-1"
+                 style="margin-left: 0.5px">
+                <i
+                    class="ki-outline ki-geolocation fs-2 text-info">
+                </i>
+            </div>
+            <!--end::Timeline icon-->
+
+            <!--begin::Timeline content-->
+            <div class="timeline-content m-0">
+                <!--begin::Label-->
+                <span
+                    class="fs-8 fw-bolder text-info text-uppercase">
+                    Receiver
+                </span>
+                <!--begin::Label-->
+
+                <!--begin::Title-->
+                <a href="#"
+                   class="fs-6 text-gray-800 fw-bold d-block text-hover-primary">
+                    Jessie
+                    Clarcson
+                </a>
+                <!--end::Title-->
+
+                <!--begin::Title-->
+                <span class="fw-semibold text-gray-400">
+                    Total
+                    2,356 Items in the Stock
+                </span>
+                <!--end::Title-->
+            </div>
+            <!--end::Timeline content-->
+        </div>
+        <!--end::Timeline item-->
+    </div>
+    <!--end::Timeline-->
+</div>
+<!--end::Item-->
+
+<!--begin::Separator-->
+<div class="separator separator-dashed mt-5 mb-4"></div>
+<!--end::Separator-->
+
+
+<!--begin::Item-->
+<div class="m-0">
+    <!--begin::Timeline-->
+    <div class="timeline ms-n1">
+        <!--begin::Timeline item-->
+        <div class="timeline-item align-items-center mb-4">
+            <!--begin::Timeline line-->
+            <div class="timeline-line w-20px mt-12 mb-n14">
+            </div>
+            <!--end::Timeline line-->
+
+            <!--begin::Timeline icon-->
+            <div class="timeline-icon pt-1"
+                 style="margin-left: 0.7px">
+                <i
+                    class="ki-outline ki-cd fs-2 text-success">
+                </i>
+            </div>
+            <!--end::Timeline icon-->
+
+            <!--begin::Timeline content-->
+            <div class="timeline-content m-0">
+                <!--begin::Label-->
+                <span
+                    class="fs-8 fw-bolder text-success text-uppercase">
+                    Sender
+                </span>
+                <!--begin::Label-->
+
+                <!--begin::Title-->
+                <a href="#"
+                   class="fs-6 text-gray-800 fw-bold d-block text-hover-primary">
+                    Cameron
+                    Williamson
+                </a>
+                <!--end::Title-->
+
+                <!--begin::Title-->
+                <span class="fw-semibold text-gray-400">
+                    3891
+                    Ranchview Dr. Richardson, California
+                    62639
+                </span>
+                <!--end::Title-->
+            </div>
+            <!--end::Timeline content-->
+        </div>
+        <!--end::Timeline item-->
+
+        <!--begin::Timeline item-->
+        <div class="timeline-item align-items-center">
+            <!--begin::Timeline line-->
+            <div class="timeline-line w-20px"></div>
+            <!--end::Timeline line-->
+
+            <!--begin::Timeline icon-->
+            <div class="timeline-icon pt-1"
+                 style="margin-left: 0.5px">
+                <i
+                    class="ki-outline ki-geolocation fs-2 text-info">
+                </i>
+            </div>
+            <!--end::Timeline icon-->
+
+            <!--begin::Timeline content-->
+            <div class="timeline-content m-0">
+                <!--begin::Label-->
+                <span
+                    class="fs-8 fw-bolder text-info text-uppercase">
+                    Receiver
+                </span>
+                <!--begin::Label-->
+
+                <!--begin::Title-->
+                <a href="#"
+                   class="fs-6 text-gray-800 fw-bold d-block text-hover-primary">
+                    Kristin
+                    Watson
+                </a>
+                <!--end::Title-->
+
+                <!--begin::Title-->
+                <span class="fw-semibold text-gray-400">
+                    8502
+                    Preston Rd. Inglewood, Maine 98380
+                </span>
+                <!--end::Title-->
+            </div>
+            <!--end::Timeline content-->
+        </div>
+        <!--end::Timeline item-->
+    </div>
+    <!--end::Timeline-->
+</div>
+<!--end::Item-->
+
+<!--begin::Separator-->
+<div class="separator separator-dashed mt-5 mb-4"></div>
+<!--end::Separator-->
+
+
+<!--begin::Item-->
+<div class="m-0">
+    <!--begin::Timeline-->
+    <div class="timeline ms-n1">
+        <!--begin::Timeline item-->
+        <div class="timeline-item align-items-center mb-4">
+            <!--begin::Timeline line-->
+            <div class="timeline-line w-20px mt-12 mb-n14">
+            </div>
+            <!--end::Timeline line-->
+
+            <!--begin::Timeline icon-->
+            <div class="timeline-icon pt-1"
+                 style="margin-left: 0.7px">
+                <i
+                    class="ki-outline ki-cd fs-2 text-success">
+                </i>
+            </div>
+            <!--end::Timeline icon-->
+
+            <!--begin::Timeline content-->
+            <div class="timeline-content m-0">
+                <!--begin::Label-->
+                <span
+                    class="fs-8 fw-bolder text-success text-uppercase">
+                    Sender
+                </span>
+                <!--begin::Label-->
+
+                <!--begin::Title-->
+                <a href="#"
+                   class="fs-6 text-gray-800 fw-bold d-block text-hover-primary">
+                    Brooklyn
+                    Simmons
+                </a>
+                <!--end::Title-->
+
+                <!--begin::Title-->
+                <span class="fw-semibold text-gray-400">
+                    6391
+                    Elgin St. Celina, Delaware 10299
+                </span>
+                <!--end::Title-->
+            </div>
+            <!--end::Timeline content-->
+        </div>
+        <!--end::Timeline item-->
+
+        <!--begin::Timeline item-->
+        <div class="timeline-item align-items-center">
+            <!--begin::Timeline line-->
+            <div class="timeline-line w-20px"></div>
+            <!--end::Timeline line-->
+
+            <!--begin::Timeline icon-->
+            <div class="timeline-icon pt-1"
+                 style="margin-left: 0.5px">
+                <i
+                    class="ki-outline ki-geolocation fs-2 text-info">
+                </i>
+            </div>
+            <!--end::Timeline icon-->
+
+            <!--begin::Timeline content-->
+            <div class="timeline-content m-0">
+                <!--begin::Label-->
+                <span
+                    class="fs-8 fw-bolder text-info text-uppercase">
+                    Receiver
+                </span>
+                <!--begin::Label-->
+
+                <!--begin::Title-->
+                <a href="#"
+                   class="fs-6 text-gray-800 fw-bold d-block text-hover-primary">
+                    Ralph
+                    Edwards
+                </a>
+                <!--end::Title-->
+
+                <!--begin::Title-->
+                <span class="fw-semibold text-gray-400">
+                    2464
+                    Royal Ln. Mesa, New Jersey 45463
+                </span>
+                <!--end::Title-->
+            </div>
+            <!--end::Timeline content-->
+        </div>
+        <!--end::Timeline item-->
+    </div>
+    <!--end::Timeline-->
+</div>
+<!--end::Item-->
+
+
+</div>
+<!--end::Tap pane-->
+</div>
+<!--end::Tab Content-->
+</div>
+</div>
+</div>
+<div class="col-xl-8 mb-5 mb-xl-10">
+ @await Html.PartialAsync("BlogTable",Model)
+</div>
+</div>
+<!--end::Row-->
+</div>
+<!--end::Content container-->
+</div>
+<!--end::Content-->
+</div>
+<!--end::Content wrapper-->
+
+@* <div class="container mt-3"> *@
+@*     <h2>Hangfire Example</h2> *@
+@* *@
+@*     <div class="row"> *@
+@*         <div class="col-md-3"> *@
+@*             <form class="form-inline" asp-action="RunCron" asp-controller="Blog"> *@
+@*                 <div class="input-group mb-3"> *@
+@*                     <input type="text" class="form-control" placeholder="Cron" name="cron"> *@
+@*                     <button class="btn btn-outline-secondary" type="submit" id="create">Create With Cron</button> *@
+@*                 </div> *@
+@*             </form> *@
+@*         </div> *@
+@* *@
+@*         <div class="col-md-3"> *@
+@*             <form class="form-inline" asp-action="StopCron" asp-controller="Blog"> *@
+@*                 <div class="input-group mb-3"> *@
+@*                     <input type="text" class="form-control" placeholder="Job Id" name="jobId"> *@
+@*                     <button class="btn btn-outline-secondary" type="submit">Stop The Job</button> *@
+@*                 </div> *@
+@*             </form> *@
+@*         </div> *@
+@* *@
+@*         <div class="col-md-3"> *@
+@*               <a class="btn btn-outline-danger" asp-action="StopAllTasks">Stop All Jobs</a> *@
+@*         </div> *@
+@*     </div> *@
+@* *@
+@*     @await Html.PartialAsync("BlogTable",Model) *@
+@* *@
+@*     <h5 class="mt-4">Job Ids</h5> *@
+@*     $1$ <ol class="mt-2"> #1# *@
+@*     $1$     @foreach (var item in Model) #1# *@
+@*     $1$     { #1# *@
+@*     $1$         <li>@item.JobId || @item.MethodName</li> #1# *@
+@*     $1$     } #1# *@
+@*     $1$ </ol> #1# *@
+@* </div> *@

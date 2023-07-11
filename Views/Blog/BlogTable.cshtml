@@ -4,70 +4,88 @@
     string url = "/Blog/BlogTable?pageNo={0}&pageSize={1}&searchParam={2}";
     Model.PageSettingModel.PageUrl = url;
 }
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" integrity="sha512-t4GWSVZO1eC8BM339Xd7Uphw5s17a86tIZIj8qRxhnKub6WoyhnrxeCIMeAqBPgdZGlCcG2PrZjMc+Wr78+5Xg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-
-
-<table class="table table-hover mt-3" id="blogTable">
-    <thead>
-    <tr>
-        <td colspan="2"></td>
-        <td>
+<div class="card card-flush h-md-100" id="blogTable">
+    <div class="card-header pt-7">
+        <h3 class="card-title align-items-start flex-column">
+            <span class="card-label fw-bold text-gray-800">
+                Blog Lists
+            </span>
+            <span class="text-gray-400 mt-1 fw-semibold fs-6">
+                Total @Model.PageSettingModel.TotalRowCount.ToString("N")
+            </span>
+        </h3>
+        <div class="card-toolbar">
             <div class="input-group mb-3">
                 <input type="text" id="searchParam" value="@Model.PageSettingModel.SearchParam"
-                       class="form-control" placeholder="Search.." aria-label=""/>
+                       class="form-control form-control-sm" placeholder="Search.." aria-label=""/>
                 <div class="input-group-append">
-                    <button type="button" class="btn btn-outline-secondary" id="searchBtn">
-                        <i class="fa-solid fa-magnifying-glass"></i>
+                    <button type="button" class="btn btn-sm btn-light" id="searchBtn">
+                       <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </div>
             </div>
-        </td>
-    </tr>
-    <tr>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Content</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var blog in Model.BlogList)
-    {
-        <tr>
-            <td>@blog.BlogTitle</td>
-            <td>@blog.BlogAuthor</td>
-            <td>@blog.BlogContent</td>
-        </tr>
-    }
-    </tbody>
-    <tfoot>
-    <tr>
-        <td colspan="3">
-            @await Html.PartialAsync("_Pagination", Model.PageSettingModel)
-        </td>
-    </tr>
-    </tfoot>
-</table>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="tab-content">
+            <div class="tab-pane fade active show" id="kt_stats_widget_6_tab_1">
+                <div class="table-responsive">
+                    <table class="table table-row-dashed align-middle gs-0 gy-4 my-0">
+                        <thead>
+                        <tr class="fs-7 fw-bold text-gray-800 border-bottom-0">
+                            <th class="p-0 w-200px w-xxl-450px">Title</th>
+                            <th class="p-0 min-w-150px">Author</th>
+                            <th class="p-0 min-w-150px">Content</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var blog in Model.BlogList)
+                        {
+                            <tr>
+                                <td class="text-gray-700">
+                                    @blog.BlogTitle     
+                                </td>
+                                <td class="text-gray-700">
+                                    @blog.BlogAuthor
+                                </td>
+                                <td class="text-gray-700">
+                                    @blog.BlogAuthor
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                        <!--end::Table body-->
+                    </table>
+                </div>
+                <!--end::Table-->
+            </div>
+            <!--end::Tap pane-->
+        </div>
+        <!--end::Tab Content-->
+    </div>
+    <div class="card-footer">
+        @await Html.PartialAsync("_Pagination", Model.PageSettingModel)
+    </div>
+</div>
 
-<script src="~/js/signalr/dist/browser/signalr.js"></script>
-
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script>
-
- $('#searchBtn').on("click",()=>{
-     let pageNo = "@Model.PageSettingModel.PageNo";
-     let pageSize = "@Model.PageSettingModel.PageSize";
-     let searchParam = $('#searchParam').val();
-     let url = "@Html.Raw(Model.PageSettingModel.PageUrl)"
-            .replace("{0}",pageNo)
-            .replace("{1}",pageSize)
-            .replace("{2}",searchParam);
-     loadPage(url);
- })
- function loadPage(url){
-     $('#blogTable').load(url);
- }
+     $('#searchBtn').on("click",()=>{
+         let pageNo = "@Model.PageSettingModel.PageNo";
+         let pageSize = "@Model.PageSettingModel.PageSize";
+         let searchParam = $('#searchParam').val();
+         let url = "@Html.Raw(Model.PageSettingModel.PageUrl)"
+                .replace("{0}",pageNo)
+                .replace("{1}",pageSize)
+                .replace("{2}",searchParam);
+         console.log(url)
+         loadPage(url);
+     })
+     function loadPage(url){
+         $('#blogTable').load(url);
+     }
 </script>
+
 
 @* <script> *@
 @* "use strict"; *@
