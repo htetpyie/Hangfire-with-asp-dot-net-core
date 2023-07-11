@@ -86,7 +86,7 @@
             else
             {
                 <li class="page-item">
-                    <a class="page-link" href="javascript:void(0);" onclick='loadPage("@string.Format(url, 1)")'>1</a>
+                    <a class="page-link" href="javascript:void(0);" onclick='loadPage("@string.Format(url, 1,10,searchParam)")'>1</a>
                 </li>
                 <li class="page-item">
                     <a class="page-link" href="javascript:void(0);">...</a>
@@ -112,7 +112,7 @@
                     <a class="page-link" href="javascript:void(0);">...</a>
                 </li>
                 <li class="page-item">
-                    <a class="page-link" href="javascript:void(0);" onclick='loadPage("@string.Format(url, totalPageNo)")'>@totalPageNo</a>
+                    <a class="page-link" href="javascript:void(0);" onclick='loadPage("@string.Format(url, totalPageNo,10,searchParam)")'>@totalPageNo</a>
                 </li>
             }
         }
