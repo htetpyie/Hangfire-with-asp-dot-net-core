@@ -12,7 +12,7 @@
             Tracking
         </span>
         <span class="text-gray-400 mt-1 fw-semibold fs-6">
-            56 tasks in
+            @Model.Count @(Model.Count > 1 ? "tasks" : "task")  in
             progress
         </span>
     </h3>
@@ -26,7 +26,7 @@
     <li class="nav-item col-4 mx-0 p-0">
         <!--begin::Link-->
         <a class="nav-link active d-flex justify-content-center w-100 border-0 h-100"
-           data-bs-toggle="pill" href="#kt_list_widget_16_tab_1">
+           data-bs-toggle="pill" href="#all_tasks">
             <!--begin::Subtitle-->
             <span class="nav-text text-gray-800 fw-bold fs-6 mb-3">
                 All
@@ -97,593 +97,175 @@
 <div class="tab-content px-9 hover-scroll-overlay-y pe-7 me-3 mb-2"
      style="height: 370px">
 
-<div class="tab-pane fade show active" id="kt_list_widget_16_tab_1">
-
-<!--begin::Item-->
-<div class="m-0">
-    <!--begin::Timeline-->
-    <div class="timeline ms-n1">
-        <!--begin::Timeline item-->
-        <div class="timeline-item align-items-center mb-4">
-            <!--begin::Timeline line-->
-            <div class="timeline-line w-20px mt-12 mb-n14">
-            </div>
-            <!--end::Timeline line-->
-
-            <!--begin::Timeline icon-->
-            <div class="timeline-icon pt-1"
-                 style="margin-left: 0.7px">
-                <i
-                    class="ki-outline ki-cd fs-2 text-success">
-                </i>
-            </div>
-            <!--end::Timeline icon-->
-
-            <!--begin::Timeline content-->
-            <div class="timeline-content m-0">
-                <!--begin::Label-->
-                <span
-                    class="fs-8 fw-bolder text-success text-uppercase">
-                    Sender
-                </span>
-                <!--begin::Label-->
-
-                <!--begin::Title-->
-                <a href="#"
-                   class="fs-6 text-gray-800 fw-bold d-block text-hover-primary">
-                    Brooklyn
-                    Simmons
-                </a>
-                <!--end::Title-->
-
-                <!--begin::Title-->
-                <span class="fw-semibold text-gray-400">
-                    6391
-                    Elgin St. Celina, Delaware 10299
-                </span>
-                <!--end::Title-->
-            </div>
-            <!--end::Timeline content-->
-        </div>
-        <!--end::Timeline item-->
-
-        <!--begin::Timeline item-->
-        <div class="timeline-item align-items-center">
-            <!--begin::Timeline line-->
-            <div class="timeline-line w-20px"></div>
-            <!--end::Timeline line-->
-
-            <!--begin::Timeline icon-->
-            <div class="timeline-icon pt-1"
-                 style="margin-left: 0.5px">
-                <i
-                    class="ki-outline ki-geolocation fs-2 text-info">
-                </i>
-            </div>
-            <!--end::Timeline icon-->
-
-            <!--begin::Timeline content-->
-            <div class="timeline-content m-0">
-                <!--begin::Label-->
-                <span
-                    class="fs-8 fw-bolder text-info text-uppercase">
-                    Receiver
-                </span>
-                <!--begin::Label-->
-
-                <!--begin::Title-->
-                <a href="#"
-                   class="fs-6 text-gray-800 fw-bold d-block text-hover-primary">
-                    Ralph
-                    Edwards
-                </a>
-                <!--end::Title-->
-
-                <!--begin::Title-->
-                <span class="fw-semibold text-gray-400">
-                    2464
-                    Royal Ln. Mesa, New Jersey 45463
-                </span>
-                <!--end::Title-->
-            </div>
-            <!--end::Timeline content-->
-        </div>
-        <!--end::Timeline item-->
-    </div>
-    <!--end::Timeline-->
-</div>
-<!--end::Item-->
-
-<!--begin::Separator-->
-<div class="separator separator-dashed mt-5 mb-4"></div>
-<!--end::Separator-->
-
-
-<!--begin::Item-->
-<div class="m-0">
-    <!--begin::Timeline-->
-    <div class="timeline ms-n1">
-        <!--begin::Timeline item-->
-        <div class="timeline-item align-items-center mb-4">
-            <!--begin::Timeline line-->
-            <div class="timeline-line w-20px mt-12 mb-n14">
-            </div>
-            <!--end::Timeline line-->
-
-            <!--begin::Timeline icon-->
-            <div class="timeline-icon pt-1"
-                 style="margin-left: 0.7px">
-                <i
-                    class="ki-outline ki-cd fs-2 text-success">
-                </i>
-            </div>
-            <!--end::Timeline icon-->
-
-            <!--begin::Timeline content-->
-            <div class="timeline-content m-0">
-                <!--begin::Label-->
-                <span
-                    class="fs-8 fw-bolder text-success text-uppercase">
-                    Sender
-                </span>
-                <!--begin::Label-->
-
-                <!--begin::Title-->
-                <a href="#"
-                   class="fs-6 text-gray-800 fw-bold d-block text-hover-primary">
-                    Cameron
-                    Williamson
-                </a>
-                <!--end::Title-->
-
-                <!--begin::Title-->
-                <span class="fw-semibold text-gray-400">
-                    3891
-                    Ranchview Dr. Richardson, California
-                    62639
-                </span>
-                <!--end::Title-->
-            </div>
-            <!--end::Timeline content-->
-        </div>
-        <!--end::Timeline item-->
-
-        <!--begin::Timeline item-->
-        <div class="timeline-item align-items-center">
-            <!--begin::Timeline line-->
-            <div class="timeline-line w-20px"></div>
-            <!--end::Timeline line-->
-
-            <!--begin::Timeline icon-->
-            <div class="timeline-icon pt-1"
-                 style="margin-left: 0.5px">
-                <i
-                    class="ki-outline ki-geolocation fs-2 text-info">
-                </i>
-            </div>
-            <!--end::Timeline icon-->
-
-            <!--begin::Timeline content-->
-            <div class="timeline-content m-0">
-                <!--begin::Label-->
-                <span
-                    class="fs-8 fw-bolder text-info text-uppercase">
-                    Receiver
-                </span>
-                <!--begin::Label-->
-
-                <!--begin::Title-->
-                <a href="#"
-                   class="fs-6 text-gray-800 fw-bold d-block text-hover-primary">
-                    Kristin
-                    Watson
-                </a>
-                <!--end::Title-->
-
-                <!--begin::Title-->
-                <span class="fw-semibold text-gray-400">
-                    8502
-                    Preston Rd. Inglewood, Maine 98380
-                </span>
-                <!--end::Title-->
-            </div>
-            <!--end::Timeline content-->
-        </div>
-        <!--end::Timeline item-->
-    </div>
-    <!--end::Timeline-->
-</div>
-<!--end::Item-->
-
-<!--begin::Separator-->
-<div class="separator separator-dashed mt-5 mb-4"></div>
-<!--end::Separator-->
-
-
-<!--begin::Item-->
-<div class="m-0">
-    <!--begin::Timeline-->
-    <div class="timeline ms-n1">
-        <!--begin::Timeline item-->
-        <div class="timeline-item align-items-center mb-4">
-            <!--begin::Timeline line-->
-            <div class="timeline-line w-20px mt-12 mb-n14">
-            </div>
-            <!--end::Timeline line-->
-
-            <!--begin::Timeline icon-->
-            <div class="timeline-icon pt-1"
-                 style="margin-left: 0.7px">
-                <i
-                    class="ki-outline ki-cd fs-2 text-success">
-                </i>
-            </div>
-            <!--end::Timeline icon-->
-
-            <!--begin::Timeline content-->
-            <div class="timeline-content m-0">
-                <!--begin::Label-->
-                <span
-                    class="fs-8 fw-bolder text-success text-uppercase">
-                    Sender
-                </span>
-                <!--begin::Label-->
-
-                <!--begin::Title-->
-                <a href="#"
-                   class="fs-6 text-gray-800 fw-bold d-block text-hover-primary">
-                    Albert
-                    Flores
-                </a>
-                <!--end::Title-->
-
-                <!--begin::Title-->
-                <span class="fw-semibold text-gray-400">
-                    3517 W.
-                    Gray St. Utica, Pennsylvania 57867
-                </span>
-                <!--end::Title-->
-            </div>
-            <!--end::Timeline content-->
-        </div>
-        <!--end::Timeline item-->
-
-        <!--begin::Timeline item-->
-        <div class="timeline-item align-items-center">
-            <!--begin::Timeline line-->
-            <div class="timeline-line w-20px"></div>
-            <!--end::Timeline line-->
-
-            <!--begin::Timeline icon-->
-            <div class="timeline-icon pt-1"
-                 style="margin-left: 0.5px">
-                <i
-                    class="ki-outline ki-geolocation fs-2 text-info">
-                </i>
-            </div>
-            <!--end::Timeline icon-->
-
-            <!--begin::Timeline content-->
-            <div class="timeline-content m-0">
-                <!--begin::Label-->
-                <span
-                    class="fs-8 fw-bolder text-info text-uppercase">
-                    Receiver
-                </span>
-                <!--begin::Label-->
-
-                <!--begin::Title-->
-                <a href="#"
-                   class="fs-6 text-gray-800 fw-bold d-block text-hover-primary">
-                    Jessie
-                    Clarcson
-                </a>
-                <!--end::Title-->
-
-                <!--begin::Title-->
-                <span class="fw-semibold text-gray-400">
-                    Total
-                    2,356 Items in the Stock
-                </span>
-                <!--end::Title-->
-            </div>
-            <!--end::Timeline content-->
-        </div>
-        <!--end::Timeline item-->
-    </div>
-    <!--end::Timeline-->
-</div>
-<!--end::Item-->
-
-<!--begin::Separator-->
-<div class="separator separator-dashed mt-5 mb-4"></div>
-<!--end::Separator-->
-
-
-<!--begin::Item-->
-<div class="m-0">
-    <!--begin::Timeline-->
-    <div class="timeline ms-n1">
-        <!--begin::Timeline item-->
-        <div class="timeline-item align-items-center mb-4">
-            <!--begin::Timeline line-->
-            <div class="timeline-line w-20px mt-12 mb-n14">
-            </div>
-            <!--end::Timeline line-->
-
-            <!--begin::Timeline icon-->
-            <div class="timeline-icon pt-1"
-                 style="margin-left: 0.7px">
-                <i
-                    class="ki-outline ki-cd fs-2 text-success">
-                </i>
-            </div>
-            <!--end::Timeline icon-->
-
-            <!--begin::Timeline content-->
-            <div class="timeline-content m-0">
-                <!--begin::Label-->
-                <span
-                    class="fs-8 fw-bolder text-success text-uppercase">
-                    Sender
-                </span>
-                <!--begin::Label-->
-
-                <!--begin::Title-->
-                <a href="#"
-                   class="fs-6 text-gray-800 fw-bold d-block text-hover-primary">
-                    Cameron
-                    Williamson
-                </a>
-                <!--end::Title-->
-
-                <!--begin::Title-->
-                <span class="fw-semibold text-gray-400">
-                    3891
-                    Ranchview Dr. Richardson, California
-                    62639
-                </span>
-                <!--end::Title-->
-            </div>
-            <!--end::Timeline content-->
-        </div>
-        <!--end::Timeline item-->
-
-        <!--begin::Timeline item-->
-        <div class="timeline-item align-items-center">
-            <!--begin::Timeline line-->
-            <div class="timeline-line w-20px"></div>
-            <!--end::Timeline line-->
-
-            <!--begin::Timeline icon-->
-            <div class="timeline-icon pt-1"
-                 style="margin-left: 0.5px">
-                <i
-                    class="ki-outline ki-geolocation fs-2 text-info">
-                </i>
-            </div>
-            <!--end::Timeline icon-->
-
-            <!--begin::Timeline content-->
-            <div class="timeline-content m-0">
-                <!--begin::Label-->
-                <span
-                    class="fs-8 fw-bolder text-info text-uppercase">
-                    Receiver
-                </span>
-                <!--begin::Label-->
-
-                <!--begin::Title-->
-                <a href="#"
-                   class="fs-6 text-gray-800 fw-bold d-block text-hover-primary">
-                    Kristin
-                    Watson
-                </a>
-                <!--end::Title-->
-
-                <!--begin::Title-->
-                <span class="fw-semibold text-gray-400">
-                    8502
-                    Preston Rd. Inglewood, Maine 98380
-                </span>
-                <!--end::Title-->
-            </div>
-            <!--end::Timeline content-->
-        </div>
-        <!--end::Timeline item-->
-    </div>
-    <!--end::Timeline-->
-</div>
-<!--end::Item-->
-
-<!--begin::Separator-->
-<div class="separator separator-dashed mt-5 mb-4"></div>
-<!--end::Separator-->
-
-
-<!--begin::Item-->
-<div class="m-0">
-    <!--begin::Timeline-->
-    <div class="timeline ms-n1">
-        <!--begin::Timeline item-->
-        <div class="timeline-item align-items-center mb-4">
-            <!--begin::Timeline line-->
-            <div class="timeline-line w-20px mt-12 mb-n14">
-            </div>
-            <!--end::Timeline line-->
-
-            <!--begin::Timeline icon-->
-            <div class="timeline-icon pt-1"
-                 style="margin-left: 0.7px">
-                <i
-                    class="ki-outline ki-cd fs-2 text-success">
-                </i>
-            </div>
-            <!--end::Timeline icon-->
-
-            <!--begin::Timeline content-->
-            <div class="timeline-content m-0">
-                <!--begin::Label-->
-                <span
-                    class="fs-8 fw-bolder text-success text-uppercase">
-                    Sender
-                </span>
-                <!--begin::Label-->
-
-                <!--begin::Title-->
-                <a href="#"
-                   class="fs-6 text-gray-800 fw-bold d-block text-hover-primary">
-                    Brooklyn
-                    Simmons
-                </a>
-                <!--end::Title-->
-
-                <!--begin::Title-->
-                <span class="fw-semibold text-gray-400">
-                    6391
-                    Elgin St. Celina, Delaware 10299
-                </span>
-                <!--end::Title-->
-            </div>
-            <!--end::Timeline content-->
-        </div>
-        <!--end::Timeline item-->
-
-        <!--begin::Timeline item-->
-        <div class="timeline-item align-items-center">
-            <!--begin::Timeline line-->
-            <div class="timeline-line w-20px"></div>
-            <!--end::Timeline line-->
-
-            <!--begin::Timeline icon-->
-            <div class="timeline-icon pt-1"
-                 style="margin-left: 0.5px">
-                <i
-                    class="ki-outline ki-geolocation fs-2 text-info">
-                </i>
-            </div>
-            <!--end::Timeline icon-->
-
-            <!--begin::Timeline content-->
-            <div class="timeline-content m-0">
-                <!--begin::Label-->
-                <span
-                    class="fs-8 fw-bolder text-info text-uppercase">
-                    Receiver
-                </span>
-                <!--begin::Label-->
-
-                <!--begin::Title-->
-                <a href="#"
-                   class="fs-6 text-gray-800 fw-bold d-block text-hover-primary">
-                    Ralph
-                    Edwards
-                </a>
-                <!--end::Title-->
-
-                <!--begin::Title-->
-                <span class="fw-semibold text-gray-400">
-                    2464
-                    Royal Ln. Mesa, New Jersey 45463
-                </span>
-                <!--end::Title-->
-            </div>
-            <!--end::Timeline content-->
-        </div>
-        <!--end::Timeline item-->
-    </div>
-    <!--end::Timeline-->
-</div>
-<!--end::Item-->
-
-
-</div>
-
-<div class="tab-pane fade show active" id="running_tasks">
-    @foreach (var item in Model.Where(x => x.IsRunning))
-    {
-        <!--begin::Item-->
-        <div class="m-0">
-            <a href="@item.StopUrl" class="border-hover-danger">
-                <!--begin::Timeline-->
-                <div class="timeline ms-n1">
-                    <!--begin::Timeline item-->
-                    <div class="timeline-item align-items-center mb-4">
-
-                        <!--begin::Timeline line-->
-                        <div class="timeline-line w-20px mt-12 mb-n8">
-                        </div>
-                        <!--end::Timeline line-->
-
-                        <!--begin::Timeline icon-->
-                        <div class="timeline-icon pt-1"
-                             style="margin-left: 0.7px">
-                          <i class="fa-regular fa-clock fs-4 text-success"></i>
-                        </div>
-                        <!--end::Timeline icon-->
-
-                        <!--begin::Timeline content-->
-                        <div class="timeline-content m-0">
-                            <!--begin::Label-->
-                            <div
-                                class="fs-8 fw-bolder text-success text-uppercase">
-                                @item.Name
+    <div class="tab-pane fade show active " id="all_tasks">
+        @foreach (var item in Model)
+        {
+            <!--begin::Item-->
+            <div class="m-0">
+                <a href="@item.StopUrl" class="border-hover-danger">
+                    <!--begin::Timeline-->
+                    <div class="timeline ms-n1">
+                        <!--begin::Timeline item-->
+                        <div class="timeline-item align-items-center mb-4">
+
+                            <!--begin::Timeline line-->
+                            <div class="timeline-line w-20px mt-12 mb-n8">
                             </div>
-                            <!--begin::Label-->
+                            <!--end::Timeline line-->
 
-                            <!--begin::Title-->
-                            <span class="fw-semibold text-gray-400">Last Execution : </span>
-                            <span class="fw-semibold text-gray-600">
-                                @item.LastTime
-                            </span>
-                            <!--end::Title-->
+                            <!--begin::Timeline icon-->
+                            <div class="timeline-icon pt-1"
+                                 style="margin-left: 0.7px">
+                                <i class="fa-regular fa-clock fs-4 text-success"></i>
+                            </div>
+                            <!--end::Timeline icon-->
+
+                            <!--begin::Timeline content-->
+                            <div class="timeline-content m-0">
+                                <!--begin::Label-->
+                                <div
+                                    class="fs-8 fw-bolder text-success text-uppercase">
+                                    @item.Name
+                                </div>
+                                <!--begin::Label-->
+
+                                <!--begin::Title-->
+                                <span class="fw-semibold text-gray-400">Last Execution : </span>
+                                <span class="fw-semibold text-gray-600">
+                                    @item.LastTime
+                                </span>
+                                <!--end::Title-->
+                            </div>
+                            <!--end::Timeline content-->
                         </div>
-                        <!--end::Timeline content-->
+                        <!--end::Timeline item-->
+
+                        <!--begin::Timeline item-->
+                        <div class="timeline-item align-items-center">
+
+                            <!--begin::Timeline line-->
+                            <div class="timeline-line w-20px"></div>
+                            <!--end::Timeline line-->
+
+                            <!--begin::Timeline icon-->
+                            <div class="timeline-icon pt-1"
+                                 style="margin-left: 0.5px">
+                                <i class="fa-regular fa-clock fs-4 text-info"></i>
+                            </div>
+                            <!--end::Timeline icon-->
+
+                            <!--begin::Timeline content-->
+                            <div class="timeline-content m-0">
+                                <!--begin::Label-->
+                                <span
+                                    class="fw-semibold text-gray-400">
+                                    Next Execution :
+                                </span>
+                                <!--begin::Label-->
+                                <!--begin::Title-->
+                                <span class="fw-semibold text-info fs-7">
+                                    @item.NextTime
+                                </span>
+                                <!--end::Title-->
+                            </div>
+                            <!--end::Timeline content-->
+                        </div>
+                        <!--end::Timeline item-->
                     </div>
-                    <!--end::Timeline item-->
+                    <!--end::Timeline-->
+                </a>
+            </div>
+            <!--end::Item-->
+            <div class="separator separator-dashed mt-5 mb-4"></div>
+        }
 
-                    <!--begin::Timeline item-->
-                    <div class="timeline-item align-items-center">
+    </div>
+    
+    <div class="tab-pane fade " id="running_tasks">
+        @foreach (var item in Model.Where(x => x.IsRunning))
+        {
+            <!--begin::Item-->
+            <div class="m-0">
+                <a href="@item.StopUrl" class="border-hover-danger">
+                    <!--begin::Timeline-->
+                    <div class="timeline ms-n1">
+                        <!--begin::Timeline item-->
+                        <div class="timeline-item align-items-center mb-4">
 
-                        <!--begin::Timeline line-->
-                        <div class="timeline-line w-20px"></div>
-                        <!--end::Timeline line-->
+                            <!--begin::Timeline line-->
+                            <div class="timeline-line w-20px mt-12 mb-n8">
+                            </div>
+                            <!--end::Timeline line-->
 
-                        <!--begin::Timeline icon-->
-                        <div class="timeline-icon pt-1"
-                             style="margin-left: 0.5px">
-                           <i class="fa-regular fa-clock fs-4 text-info"></i>
+                            <!--begin::Timeline icon-->
+                            <div class="timeline-icon pt-1"
+                                 style="margin-left: 0.7px">
+                                <i class="fa-regular fa-clock fs-4 text-success"></i>
+                            </div>
+                            <!--end::Timeline icon-->
+
+                            <!--begin::Timeline content-->
+                            <div class="timeline-content m-0">
+                                <!--begin::Label-->
+                                <div
+                                    class="fs-8 fw-bolder text-success text-uppercase">
+                                    @item.Name
+                                </div>
+                                <!--begin::Label-->
+
+                                <!--begin::Title-->
+                                <span class="fw-semibold text-gray-400">Last Execution : </span>
+                                <span class="fw-semibold text-gray-600">
+                                    @item.LastTime
+                                </span>
+                                <!--end::Title-->
+                            </div>
+                            <!--end::Timeline content-->
                         </div>
-                        <!--end::Timeline icon-->
+                        <!--end::Timeline item-->
 
-                        <!--begin::Timeline content-->
-                        <div class="timeline-content m-0">
-                            <!--begin::Label-->
-                            <span
-                                class="fw-semibold text-gray-400">
-                                Next Execution :
-                            </span>
-                            <!--begin::Label-->
-                            <!--begin::Title-->
-                            <span class="fw-semibold text-info fs-7">
-                                @item.NextTime
-                            </span>
-                            <!--end::Title-->
+                        <!--begin::Timeline item-->
+                        <div class="timeline-item align-items-center">
+
+                            <!--begin::Timeline line-->
+                            <div class="timeline-line w-20px"></div>
+                            <!--end::Timeline line-->
+
+                            <!--begin::Timeline icon-->
+                            <div class="timeline-icon pt-1"
+                                 style="margin-left: 0.5px">
+                                <i class="fa-regular fa-clock fs-4 text-info"></i>
+                            </div>
+                            <!--end::Timeline icon-->
+
+                            <!--begin::Timeline content-->
+                            <div class="timeline-content m-0">
+                                <!--begin::Label-->
+                                <span
+                                    class="fw-semibold text-gray-400">
+                                    Next Execution :
+                                </span>
+                                <!--begin::Label-->
+                                <!--begin::Title-->
+                                <span class="fw-semibold text-info fs-7">
+                                    @item.NextTime
+                                </span>
+                                <!--end::Title-->
+                            </div>
+                            <!--end::Timeline content-->
                         </div>
-                        <!--end::Timeline content-->
+                        <!--end::Timeline item-->
                     </div>
-                    <!--end::Timeline item-->
-                </div>
-                <!--end::Timeline-->
-            </a>
-        </div>
-        <!--end::Item-->
+                    <!--end::Timeline-->
+                </a>
+            </div>
+            <!--end::Item-->
 
 
-        <div class="separator separator-dashed mt-5 mb-4"></div>
-    }
-
-</div>
+            <div class="separator separator-dashed mt-5 mb-4"></div>
+        }
+    </div>
+    
 </div>
 <!--end::Tab Content-->
 </div>
