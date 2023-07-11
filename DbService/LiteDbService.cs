@@ -64,6 +64,13 @@ public class LiteDbService
             .Delete(id);
     }
 
+    public int DeleteAll<T>()
+    {
+         int result = _db.GetCollection<T>()
+             .DeleteAll();
+         return result;
+    }
+
     private void CreateConnection(IOptions<LiteDbOption> option)
     {
         string dbName = "app.db";

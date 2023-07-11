@@ -61,6 +61,12 @@ public class BlogController : Controller
         }
         return RedirectToAction(nameof(Index));
     }
+
+    public async Task<IActionResult> ClearAllList()
+    {
+        _liteDbService.DeleteAll<BlogDataModel>();
+        return RedirectToAction(nameof(Index));
+    }
     
     public IActionResult BlogTable(
         int pageNo = 1,
