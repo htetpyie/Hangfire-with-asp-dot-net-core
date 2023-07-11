@@ -18,6 +18,8 @@ public class BlogController : Controller
     private readonly LiteDbService _liteDbService;
     private readonly IHubContext<BlogHub> _hubContext;
 
+    private static int MaxId { get; set; }
+
     public BlogController(
         CronService cronService,
         LiteDbService liteDbService,
@@ -49,7 +51,7 @@ public class BlogController : Controller
             BlogList = list,
             PageSettingModel = pageSetting
         };
-        
+
         return View(response);
     }
 
@@ -59,23 +61,25 @@ public class BlogController : Controller
         {
             await CreateBlog();
         }
+
         return RedirectToAction(nameof(Index));
     }
 
     public async Task<IActionResult> ClearAllList()
     {
+        MaxId = GetMaxId();
         _liteDbService.DeleteAll<BlogDataModel>();
         return RedirectToAction(nameof(Index));
     }
-    
+
     public IActionResult BlogTable(
         int pageNo = 1,
-        int pageSize = 10, 
+        int pageSize = 10,
         string searchParam = "")
     {
         var list = GetList(pageNo, pageSize, searchParam);
         var totalRowCount = GetTotalRowCount(searchParam);
-        
+
         var pageSetting = new PageSettingModel
         {
             PageNo = pageNo,
@@ -88,25 +92,25 @@ public class BlogController : Controller
             BlogList = list,
             PageSettingModel = pageSetting
         };
-        
+
         return View(response);
     }
 
-    public async Task<BlogDataModel> CreateBlog()
+    public async Task CreateBlog()
     {
-        int latId = _liteDbService
-            .GetList<BlogDataModel>()
-            .Max(x => x.BlogId)
-            + 1;
-            
-        BlogDataModel model = new BlogDataModel
-        {
-            BlogAuthor = "Blog Author " + latId,
-            BlogTitle = "Blog Title " + latId,
-            BlogContent = "Blog Content " + latId,
-        };
         try
         {
+            int lastId = GetMaxId() == 0
+                    ? (MaxId + 1)
+                    : (GetMaxId() + 1)
+                ;
+
+            BlogDataModel model = new BlogDataModel
+            {
+                BlogAuthor = "Blog Author " + lastId,
+                BlogTitle = "Blog Title " + lastId,
+                BlogContent = "Blog Content " + lastId,
+            };
             _liteDbService.Insert(model);
             await SendList();
         }
@@ -115,8 +119,6 @@ public class BlogController : Controller
             Console.WriteLine(e);
             throw;
         }
-
-        return model;
     }
 
     public async Task<IActionResult> RunCron(string cron)
@@ -200,6 +202,7 @@ public class BlogController : Controller
 
         return searching;
     }
+
     private CronModel Change(RecurringJobDto recurringJobDto)
     {
         return new CronModel()
@@ -207,5 +210,18 @@ public class BlogController : Controller
             JobId = recurringJobDto.Id,
             MethodName = $"{recurringJobDto.Job.Method.DeclaringType}.{recurringJobDto.Job.Method.Name}"
         };
+    }
+
+    private int GetMaxId()
+    {
+        int result = 0;
+        var list = _liteDbService
+            .GetList<BlogDataModel>();
+        if (list != null && list.Count > 0)
+        {
+            result = list.Max(x => x.BlogId);
+        }
+
+        return result;
     }
 }
