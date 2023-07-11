@@ -1,7 +1,7 @@
-﻿@{
+﻿@model List<CronResponseModel>
+@{
     Layout = null;
 }
-
 
 <div class="card card-flush">
 <div class="card-header pt-7">
@@ -47,7 +47,7 @@
     <li class="nav-item col-4 mx-0 px-0">
         <!--begin::Link-->
         <a class="nav-link d-flex justify-content-center w-100 border-0 h-100"
-           data-bs-toggle="pill" href="#kt_list_widget_16_tab_2">
+           data-bs-toggle="pill" href="#running_tasks">
             <!--begin::Subtitle-->
             <span class="nav-text text-gray-800 fw-bold fs-6 mb-3">
                 Running
@@ -97,7 +97,6 @@
 <div class="tab-content px-9 hover-scroll-overlay-y pe-7 me-3 mb-2"
      style="height: 370px">
 
-<!--begin::Tap pane-->
 <div class="tab-pane fade show active" id="kt_list_widget_16_tab_1">
 
 <!--begin::Item-->
@@ -599,7 +598,53 @@
 
 
 </div>
-<!--end::Tap pane-->
+
+<div class="tab-pane fade show active" id="running_tasks">
+    @foreach (var item in Model)
+    {
+        <div class="m-0">
+            <!--begin::Timeline-->
+            <div class="timeline ms-n1">
+                <!--begin::Timeline item-->
+                <div class="timeline-item align-items-center mb-4">
+                    <!--begin::Timeline line-->
+                    <div class="timeline-line w-20px mt-12 mb-n14">
+                    </div>
+                    <!--end::Timeline line-->
+
+                    <!--begin::Timeline content-->
+                    <div class="timeline-content m-0">
+                        <!--begin::Label-->
+                        <span class="fs-8 fw-bolder text-success text-uppercase">
+                            @item.Name
+                        </span>
+                        <!--begin::Label-->
+
+                        <!--begin::Title-->
+                        <a href="#"
+                           class="fs-6 text-gray-800 fw-bold d-block text-hover-primary">
+                            Brooklyn
+                            Simmons
+                        </a>
+                        <!--end::Title-->
+
+                        <!--begin::Title-->
+                        <span class="fw-semibold text-gray-400">
+                            Next Running Time : @item.NextTime
+                        </span>
+                        <!--end::Title-->
+                    </div>
+                    <!--end::Timeline content-->
+                </div>
+                <!--end::Timeline item-->
+            </div>
+            <!--end::Timeline-->
+        </div>
+
+        <div class="separator separator-dashed mt-5 mb-4"></div>
+    }
+
+</div>
 </div>
 <!--end::Tab Content-->
 </div>

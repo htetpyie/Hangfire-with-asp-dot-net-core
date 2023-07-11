@@ -1,4 +1,4 @@
-@model BlogListResponseModel
+@model ResponseModel
 @{
     Layout = LayoutServices.GetAppLayout;
 }
@@ -12,10 +12,10 @@
 <!--begin::Row-->
     <div class="row g-5 g-xl-10">
         <div class="col-xl-4 mb-xl-10">
-           @await Html.PartialAsync("Task")
+           @await Html.PartialAsync("CronList",Model.CronResponseList)
         </div>
         <div class="col-xl-8 mb-5 mb-xl-10">
-         @await Html.PartialAsync("BlogTable",Model)
+         @await Html.PartialAsync("BlogTable",Model.BlogListResponse)
         </div>
     </div>
     <!--end::Row-->

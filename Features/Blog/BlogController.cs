@@ -32,26 +32,15 @@ public class BlogController : Controller
 
     public IActionResult Index()
     {
-        // using var connection = JobStorage.Current.GetConnection();
-        // List<CronModel> lstCron = connection.GetRecurringJobs()
-        //     .Select(x => Change(x))
-        //     .ToList(); 
-        // return View(lstCron);
-        var test = _cronService.GetAllTaskList();
-        var list = GetList();
-        var pageSetting = new PageSettingModel
-        {
-            PageNo = 1,
-            PageSize = 10,
-            SearchParam = "",
-            TotalRowCount = GetTotalRowCount("")
-        };
-        BlogListResponseModel response = new BlogListResponseModel
-        {
-            BlogList = list,
-            PageSettingModel = pageSetting
-        };
+        var cronList = _cronService.GetAllTaskList();
+        var blogListResponse = GetBlogListResponseModel();
 
+        var response = new ResponseModel
+        {
+            CronResponseList = cronList,
+            BlogListResponse = blogListResponse
+        };
+        
         return View(response);
     }
 
@@ -203,6 +192,24 @@ public class BlogController : Controller
         return searching;
     }
 
+    private BlogListResponseModel GetBlogListResponseModel()
+    {
+        var list = GetList();
+        var pageSetting = new PageSettingModel
+        {
+            PageNo = 1,
+            PageSize = 10,
+            SearchParam = "",
+            TotalRowCount = GetTotalRowCount("")
+        };
+        BlogListResponseModel response = new BlogListResponseModel
+        {
+            BlogList = list,
+            PageSettingModel = pageSetting
+        };
+        return response;
+    }
+    
     private CronModel Change(RecurringJobDto recurringJobDto)
     {
         return new CronModel()

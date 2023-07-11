@@ -99,9 +99,11 @@ public class CronService
         using var connection = JobStorage.Current.GetConnection();
         foreach (var recurringJob in connection.GetRecurringJobs())
         {
-            var nextExecutionTime = recurringJob
-                .NextExecution
-                ?.ToString("f");
+            var nextExecutionTime = TimeZoneInfo
+                .ConvertTimeBySystemTimeZoneId(
+                    recurringJob.NextExecution?? DateTime.Now,
+                    "Myanmar Standard Time")
+                .ToString("f");
             string name = recurringJob.Job.Method.Name;
 
             var response = new CronResponseModel
