@@ -55,14 +55,10 @@
             @*         </div> *@
             @*     </form> *@
             @* </div> *@
-
-            <div class="col-md-11 mb-3">
-                <a class="btn btn-sm btn-light" asp-action="StopAllTasks">Stop All Jobs</a>
-            </div>
         </div>
 
         <!--begin::Stats-->
-        <div class="d-flex mb-3 mb-lg-6">
+        <div class="d-flex my-3 mb-lg-6">
             <!--begin::Stat-->
             <div
                 class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 me-6">
@@ -76,15 +72,13 @@
             </div>
             <!--end::Stat-->
             <!--begin::Stat-->
-            <div class="border border-gray-300 border-dashed rounded min-w-100px w-100 py-2 px-4 ">
+            <a class=" border border-light-300 border-dashed rounded min-w-100px w-100 py-2 px-4 " asp-action="StopAllTasks">
                 <!--begin::Date-->
-                <span class="fs-6 text-gray-500 fw-bold">Spent</span>
+                <span class="fs-3 text-danger text-center fw-bold">
+                      Stop All Task
+                </span>
                 <!--end::Date-->
-
-                <!--begin::Label-->
-                <div class="fs-2 fw-bold text-danger">$8,029</div>
-                <!--end::Label-->
-            </div>
+            </a>
             <!--end::Stat-->
 
         </div>
