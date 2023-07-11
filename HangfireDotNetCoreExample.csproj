@@ -17,6 +17,7 @@
 
     <ItemGroup>
       <Folder Include="wwwroot\theme\" />
+      <Folder Include="wwwroot\theme\assets\plugins\custom\" />
     </ItemGroup>
 
     <ItemGroup>
