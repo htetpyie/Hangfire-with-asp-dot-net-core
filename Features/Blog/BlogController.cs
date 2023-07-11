@@ -59,10 +59,7 @@ public class BlogController : Controller
     {
         var list = GetList(pageNo, pageSize, searchParam);
         var totalRowCount = GetTotalRowCount(searchParam);
-        if (totalRowCount < pageNo * pageSize)
-        {
-            pageNo = 1;
-        }
+        
         var pageSetting = new PageSettingModel
         {
             PageNo = pageNo,

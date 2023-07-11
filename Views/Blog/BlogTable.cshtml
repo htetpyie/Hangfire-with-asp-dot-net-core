@@ -4,7 +4,7 @@
     string url = "/Blog/BlogTable?pageNo={0}&pageSize={1}&searchParam={2}";
     Model.PageSettingModel.PageUrl = url;
 }
-<div class="card card-flush h-md-100" id="blogTable">
+<div class="card card-flush" id="blogTable">
     <div class="card-header pt-7">
         <h3 class="card-title align-items-start flex-column">
             <span class="card-label fw-bold text-gray-800">
@@ -26,16 +26,16 @@
             </div>
         </div>
     </div>
-    <div class="card-body">
+    <div class="card-body mb-0 pb-0">
         <div class="tab-content">
             <div class="tab-pane fade active show" id="kt_stats_widget_6_tab_1">
-                <div class="table-responsive hover-scroll-overlay-y" style="height: 400px;">
+                <div class="table-responsive hover-scroll-overlay-y" style="height: 370px;">
                     <table class="table table-row-dashed align-middle gs-0 gy-4 my-0">
                         <thead>
                         <tr class="fs-7 fw-bold text-gray-800 border-bottom-0">
-                            <th class="p-0 w-200px w-xxl-450px">Title</th>
-                            <th class="p-0 min-w-150px">Author</th>
-                            <th class="p-0 min-w-150px">Content</th>
+                            <th >Title</th>
+                            <th>Author</th>
+                            <th>Content</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -63,8 +63,8 @@
         </div>
         <!--end::Tab Content-->
     </div>
-    <div class="card-footer">
-        @await Html.PartialAsync("_Pagination", Model.PageSettingModel)
+    <div class="card-footer ">
+            @await Html.PartialAsync("_Pagination", Model.PageSettingModel)
     </div>
 </div>
 
@@ -75,7 +75,7 @@
          let pageSize = "@Model.PageSettingModel.PageSize";
          let searchParam = $('#searchParam').val();
          let url = "@Html.Raw(Model.PageSettingModel.PageUrl)"
-                .replace("{0}",pageNo)
+                .replace("{0}",1)
                 .replace("{1}",pageSize)
                 .replace("{2}",searchParam);
          console.log(url)
