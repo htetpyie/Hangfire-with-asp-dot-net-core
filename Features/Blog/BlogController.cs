@@ -32,12 +32,12 @@ public class BlogController : Controller
 
     public IActionResult Index()
     {
-        var cronList = _cronService.GetAllTaskList();
+        var cronResponse = GetCronResponseModel();
         var blogListResponse = GetBlogListResponseModel();
 
         var response = new ResponseModel
         {
-            CronResponseList = cronList,
+            CronResponse = cronResponse,
             BlogListResponse = blogListResponse
         };
         
@@ -209,14 +209,14 @@ public class BlogController : Controller
         };
         return response;
     }
-    
-    private CronModel Change(RecurringJobDto recurringJobDto)
+
+    private CronResponseModel GetCronResponseModel()
     {
-        return new CronModel()
-        {
-            JobId = recurringJobDto.Id,
-            MethodName = $"{recurringJobDto.Job.Method.DeclaringType}.{recurringJobDto.Job.Method.Name}"
-        };
+        CronResponseModel model = new();
+        var cronList = _cronService.GetAllCronList();
+        model.CronList = cronList;
+        model.RunningCrons = cronList.Count; // Need to fixed
+        return model;
     }
 
     private int GetMaxId()

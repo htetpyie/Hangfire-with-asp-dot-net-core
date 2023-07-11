@@ -3,6 +3,7 @@ using System.Linq.Expressions;
 using Hangfire;
 using Hangfire.Annotations;
 using Hangfire.Storage;
+using HangfireDotNetCoreExample.Models;
 
 namespace HangfireDotNetCoreExample.Features.Cron;
 
@@ -92,9 +93,9 @@ public class CronService
         }
     }
 
-    public List<CronResponseModel> GetAllTaskList()
+    public List<CronModel> GetAllCronList()
     {
-        List<CronResponseModel> list = new();
+        List<CronModel> list = new();
 
         using var connection = JobStorage.Current.GetConnection();
         foreach (var recurringJob in connection.GetRecurringJobs())
@@ -116,7 +117,7 @@ public class CronService
 
             string name = recurringJob.Job.Method.Name;
 
-            var response = new CronResponseModel
+            var response = new CronModel
             {
                 JobId = recurringJob.Id,
                 Name = name,
