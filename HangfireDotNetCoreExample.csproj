@@ -174,6 +174,15 @@
       <_ContentIncludedByDefault Remove="wwwroot\theme\assets\plugins\custom\datatables\datatables.bundle.js" />
       <_ContentIncludedByDefault Remove="Views\Home\Index.cshtml" />
       <_ContentIncludedByDefault Remove="Views\Home\Privacy.cshtml" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\account\api-keys\api-keys.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\account\billing\general.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\account\referrals\referral-program.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\account\security\license-usage.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\account\security\security-summary.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\account\settings\deactivate-account.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\account\settings\profile-details.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\account\settings\signin-methods.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\theme\assets\js\custom\layout-builder\layout-builder.js" />
     </ItemGroup>
 
 </Project>
