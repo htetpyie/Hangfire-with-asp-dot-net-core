@@ -172,6 +172,8 @@
       <_ContentIncludedByDefault Remove="wwwroot\theme\assets\media\stock\food\img-9.jpg" />
       <_ContentIncludedByDefault Remove="wwwroot\theme\assets\plugins\custom\datatables\datatables.bundle.css" />
       <_ContentIncludedByDefault Remove="wwwroot\theme\assets\plugins\custom\datatables\datatables.bundle.js" />
+      <_ContentIncludedByDefault Remove="Views\Home\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Home\Privacy.cshtml" />
     </ItemGroup>
 
 </Project>
