@@ -600,8 +600,9 @@
 </div>
 
 <div class="tab-pane fade show active" id="running_tasks">
-    @foreach (var item in Model)
+    @foreach (var item in Model.Where(x => x.IsRunning))
     {
+        <!--begin::Item-->
         <div class="m-0">
             <!--begin::Timeline-->
             <div class="timeline ms-n1">
@@ -612,25 +613,58 @@
                     </div>
                     <!--end::Timeline line-->
 
+                    <!--begin::Timeline icon-->
+                    <div class="timeline-icon pt-1"
+                         style="margin-left: 0.7px">
+                       <i class="fa-regular fa-clock fs-2 text-success"></i>
+                    </div>
+                    <!--end::Timeline icon-->
+
                     <!--begin::Timeline content-->
                     <div class="timeline-content m-0">
                         <!--begin::Label-->
-                        <span class="fs-8 fw-bolder text-success text-uppercase">
+                        <div
+                            class="fs-8 fw-bolder text-success text-uppercase">
                             @item.Name
-                        </span>
+                        </div>
                         <!--begin::Label-->
 
                         <!--begin::Title-->
-                        <a href="#"
-                           class="fs-6 text-gray-800 fw-bold d-block text-hover-primary">
-                            Brooklyn
-                            Simmons
-                        </a>
+                        <span class="fw-semibold text-gray-400">Last Execution : </span>
+                        <span class="fw-semibold text-gray-400">
+                           @item.NextTime
+                        </span>
                         <!--end::Title-->
+                    </div>
+                    <!--end::Timeline content-->
+                </div>
+                <!--end::Timeline item-->
+
+                <!--begin::Timeline item-->
+                <div class="timeline-item align-items-center">
+                    <!--begin::Timeline line-->
+                    <div class="timeline-line w-20px"></div>
+                    <!--end::Timeline line-->
+
+                    <!--begin::Timeline icon-->
+                    <div class="timeline-icon pt-1"
+                         style="margin-left: 0.7px">
+                        <span></span>
+                    </div>
+                    <!--end::Timeline icon-->
+
+                    <!--begin::Timeline content-->
+                    <div class="timeline-content m-0">
+                        <!--begin::Label-->
+                        <div
+                            class="fs-8 fw-bolder text-uppercase">
+                            Next Execution
+                        </div>
+                        <!--begin::Label-->
 
                         <!--begin::Title-->
-                        <span class="fw-semibold text-gray-400">
-                            Next Running Time : @item.NextTime
+                        <span class="fw-semibold text-info">
+                           @item.NextTime
                         </span>
                         <!--end::Title-->
                     </div>
@@ -640,6 +674,8 @@
             </div>
             <!--end::Timeline-->
         </div>
+        <!--end::Item-->
+
 
         <div class="separator separator-dashed mt-5 mb-4"></div>
     }

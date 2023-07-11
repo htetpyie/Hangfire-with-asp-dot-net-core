@@ -95,21 +95,31 @@ public class CronService
     public List<CronResponseModel> GetAllTaskList()
     {
         List<CronResponseModel> list = new();
-        
+
         using var connection = JobStorage.Current.GetConnection();
         foreach (var recurringJob in connection.GetRecurringJobs())
         {
             var nextExecutionTime = TimeZoneInfo
                 .ConvertTimeBySystemTimeZoneId(
-                    recurringJob.NextExecution?? DateTime.Now,
+                    recurringJob.NextExecution ?? DateTime.Now,
                     "Myanmar Standard Time")
                 .ToString("f");
+            var lastExecutionTime =
+                (recurringJob.NextExecution == null)
+                    ? ""
+                    : TimeZoneInfo
+                        .ConvertTimeBySystemTimeZoneId(
+                            recurringJob.NextExecution ?? DateTime.Now,
+                            "Myanmar Standard Time")
+                        .ToString("f");
+
             string name = recurringJob.Job.Method.Name;
 
             var response = new CronResponseModel
             {
                 JobId = recurringJob.Id,
                 Name = name,
+                LastTime = lastExecutionTime,
                 NextTime = nextExecutionTime ?? "",
                 IsRunning = true
             };
