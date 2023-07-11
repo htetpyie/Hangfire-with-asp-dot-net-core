@@ -84,6 +84,28 @@ public class BlogController : Controller
 
         return View(response);
     }
+   
+    public async Task<IActionResult> RunCron(string cron)
+    {
+        string jobId = Guid.NewGuid().ToString("N");
+        _cronService.CreateRecurringJob(
+            jobId, () => CreateBlog()
+            , cron);
+        return RedirectToAction(nameof(Index));
+    }
+
+    public IActionResult StopCron(string jobId)
+    {
+        _cronService.StopRecurringJob(jobId);
+        // jobIdList.Remove(jobId);
+        return RedirectToAction(nameof(Index));
+    }
+
+    public IActionResult StopAllTasks()
+    {
+        _cronService.RemoveAllRecurringJob();
+        return RedirectToAction(nameof(Index));
+    }
 
     public async Task CreateBlog()
     {
@@ -110,28 +132,11 @@ public class BlogController : Controller
         }
     }
 
-    public async Task<IActionResult> RunCron(string cron)
+    public void GetCronCount()
     {
-        string jobId = Guid.NewGuid().ToString("N");
-        _cronService.CreateRecurringJob(
-            jobId, () => CreateBlog()
-            , cron);
-        return RedirectToAction(nameof(Index));
+        
     }
-
-    public IActionResult StopCron(string jobId)
-    {
-        _cronService.StopRecurringJob(jobId);
-        // jobIdList.Remove(jobId);
-        return RedirectToAction(nameof(Index));
-    }
-
-    public IActionResult StopAllTasks()
-    {
-        _cronService.RemoveAllRecurringJob();
-        return RedirectToAction(nameof(Index));
-    }
-
+    
     private async Task SendList()
     {
         var list = GetList();
@@ -215,7 +220,6 @@ public class BlogController : Controller
         CronResponseModel model = new();
         var cronList = _cronService.GetAllCronList();
         model.CronList = cronList;
-        model.RunningCrons = cronList.Count; // Need to fixed
         return model;
     }
 
