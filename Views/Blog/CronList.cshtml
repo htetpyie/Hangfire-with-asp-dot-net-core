@@ -608,18 +608,6 @@
             <div class="timeline ms-n1">
                 <!--begin::Timeline item-->
                 <div class="timeline-item align-items-center mb-4">
-                    <!--begin::Timeline line-->
-                    <div class="timeline-line w-20px mt-12 mb-n14">
-                    </div>
-                    <!--end::Timeline line-->
-
-                    <!--begin::Timeline icon-->
-                    <div class="timeline-icon pt-1"
-                         style="margin-left: 0.7px">
-                       <i class="fa-regular fa-clock fs-2 text-success"></i>
-                    </div>
-                    <!--end::Timeline icon-->
-
                     <!--begin::Timeline content-->
                     <div class="timeline-content m-0">
                         <!--begin::Label-->
@@ -631,8 +619,8 @@
 
                         <!--begin::Title-->
                         <span class="fw-semibold text-gray-400">Last Execution : </span>
-                        <span class="fw-semibold text-gray-400">
-                           @item.NextTime
+                        <span class="fw-semibold text-gray-600">
+                            @item.LastTime
                         </span>
                         <!--end::Title-->
                     </div>
@@ -642,29 +630,18 @@
 
                 <!--begin::Timeline item-->
                 <div class="timeline-item align-items-center">
-                    <!--begin::Timeline line-->
-                    <div class="timeline-line w-20px"></div>
-                    <!--end::Timeline line-->
-
-                    <!--begin::Timeline icon-->
-                    <div class="timeline-icon pt-1"
-                         style="margin-left: 0.7px">
-                        <span></span>
-                    </div>
-                    <!--end::Timeline icon-->
 
                     <!--begin::Timeline content-->
                     <div class="timeline-content m-0">
                         <!--begin::Label-->
-                        <div
-                            class="fs-8 fw-bolder text-uppercase">
-                            Next Execution
-                        </div>
+                        <span
+                            class="fw-semibold text-gray-400">
+                            Next Execution :
+                        </span>
                         <!--begin::Label-->
-
                         <!--begin::Title-->
-                        <span class="fw-semibold text-info">
-                           @item.NextTime
+                        <span class="fw-semibold text-primary fs-7">
+                            @item.NextTime
                         </span>
                         <!--end::Title-->
                     </div>

@@ -104,12 +104,13 @@ public class CronService
                     recurringJob.NextExecution ?? DateTime.Now,
                     "Myanmar Standard Time")
                 .ToString("f");
+            
             var lastExecutionTime =
-                (recurringJob.NextExecution == null)
+                (recurringJob.LastExecution == null)
                     ? ""
                     : TimeZoneInfo
                         .ConvertTimeBySystemTimeZoneId(
-                            recurringJob.NextExecution ?? DateTime.Now,
+                            recurringJob.LastExecution ?? DateTime.Now,
                             "Myanmar Standard Time")
                         .ToString("f");
 
