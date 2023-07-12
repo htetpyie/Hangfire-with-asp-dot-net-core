@@ -2,13 +2,46 @@ using System.Diagnostics;
 using System.Linq.Expressions;
 using Hangfire;
 using Hangfire.Annotations;
+using Hangfire.Dashboard.Resources;
 using Hangfire.Storage;
+using HangfireDotNetCoreExample.Features.DevCodes;
 using HangfireDotNetCoreExample.Models;
 
 namespace HangfireDotNetCoreExample.Features.Cron;
 
 public class CronService
 {
+    public List<CronModel> GetAllCronList()
+    {
+        List<CronModel> list = new();
+
+        using var connection = JobStorage.Current.GetConnection();
+        foreach (var recurringJob in connection.GetRecurringJobs())
+        {
+            var nextExecutionTime = recurringJob
+                .NextExecution
+                ?.GetDateTimeString();
+
+            var lastExecutionTime = recurringJob
+                .LastExecution
+                ?.GetDateTimeString();
+
+            string name = recurringJob.Job.Method.Name;
+
+            var response = new CronModel
+            {
+                JobId = recurringJob.Id,
+                Name = name,
+                LastTime = lastExecutionTime ?? "",
+                NextTime = nextExecutionTime ?? "",
+                IsRunning = true
+            };
+            list.Add(response);
+        }
+
+        return list;
+    }
+    
     public void CreateRecurringJob(string jobId,
         [NotNull, InstantHandle] Expression<Action> methodCall,
         string cron)
@@ -33,6 +66,58 @@ public class CronService
         }
     }
 
+    public CronModel StopRecurringJob(string jobId)
+    {
+        CronModel model = new();
+        try
+        {
+            model = GetCronModelByJobId(jobId);
+            RecurringJob.RemoveIfExists(jobId); // stop Cron
+        }
+        catch (Exception e)
+        {
+            Debug.WriteLine("Exception in stop recurring job " + e.Message);
+        }
+
+        return model;
+    }
+
+    public void RemoveAllRecurringJob()
+    {
+        try
+        {
+            using var connection = JobStorage.Current.GetConnection();
+            foreach (var recurringJob in connection.GetRecurringJobs())
+            {
+                RecurringJob.RemoveIfExists(recurringJob.Id);
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.Write("Exception in Remove Jobs" + ex.Message);
+        }
+    }
+    
+    public void DeleteBackgroundJob(string jobId)
+    {
+        try
+        {
+            BackgroundJob.Delete(jobId);
+        }
+        catch (Exception e)
+        {
+            Debug.WriteLine(e);
+        }
+    }
+
+    public void ContinueJobWith(string jobId,
+        [InstantHandle, NotNull] Expression<Action> methodCall)
+    {
+        BackgroundJob.ContinueJobWith(
+            jobId,
+            methodCall);
+    }
+
     public string CreateBackgroundJob(
         [NotNull, InstantHandle] Expression<Action> methodCall,
         TimeSpan delay)
@@ -53,89 +138,41 @@ public class CronService
         return jobId;
     }
 
-    public void StopRecurringJob(string jobId)
+    private CronModel GetCronModelByJobId(string jobId)
     {
+        var model = new CronModel();
         try
         {
-            RecurringJob.RemoveIfExists(jobId);
-        }
-        catch (Exception e)
-        {
-            Debug.WriteLine("Exception in stop recurring job " + e.Message);
-        }
-    }
+            var recurringJob = GetRecurringJobById(jobId);
+            var lastExecutionTime = recurringJob
+                .LastExecution
+                ?.GetDateTimeString();
 
-    public void DeleteBackgroundJob(string jobId)
-    {
-        try
-        {
-            BackgroundJob.Delete(jobId);
-        }
-        catch (Exception e)
-        {
-            Debug.WriteLine(e);
-        }
-    }
+            string now = DateTime.Now.GetDateTimeString();
 
-    public void RemoveAllRecurringJob()
-    {
-        try
-        {
-            using var connection = JobStorage.Current.GetConnection();
-            foreach (var recurringJob in connection.GetRecurringJobs())
+            model = new CronModel
             {
-                RecurringJob.RemoveIfExists(recurringJob.Id);
-            }
-        }
-        catch (Exception ex)
-        {
-            Debug.Write("Exception in Remove Jobs" + ex.Message);
-        }
-    }
-
-    public void ContinueJobWith(string jobId, 
-        [InstantHandle, NotNull] Expression<Action> methodCall)
-    {
-        BackgroundJob.ContinueJobWith(
-            jobId,
-            methodCall);
-    }
-
-    public List<CronModel> GetAllCronList()
-    {
-        List<CronModel> list = new();
-
-        using var connection = JobStorage.Current.GetConnection();
-        foreach (var recurringJob in connection.GetRecurringJobs())
-        {
-            var nextExecutionTime = TimeZoneInfo
-                .ConvertTimeBySystemTimeZoneId(
-                    recurringJob.NextExecution ?? DateTime.Now,
-                    "Myanmar Standard Time")
-                .ToString("f");
-            
-            var lastExecutionTime =
-                (recurringJob.LastExecution == null)
-                    ? ""
-                    : TimeZoneInfo
-                        .ConvertTimeBySystemTimeZoneId(
-                            recurringJob.LastExecution ?? DateTime.Now,
-                            "Myanmar Standard Time")
-                        .ToString("f");
-
-            string name = recurringJob.Job.Method.Name;
-
-            var response = new CronModel
-            {
-                JobId = recurringJob.Id,
-                Name = name,
-                LastTime = lastExecutionTime,
-                NextTime = nextExecutionTime ?? "",
-                IsRunning = true
+                JobId = jobId,
+                Name = recurringJob.Job.Method.Name,
+                LastTime = lastExecutionTime ?? "",
+                StoppedTime = now,
+                IsRunning = false
             };
-            list.Add(response);
         }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+        return model;
+    }
 
-        return list;
+    private RecurringJobDto GetRecurringJobById(string jobId)
+    {
+        var recurringJobDto = JobStorage
+            .Current
+            .GetConnection()
+            .GetRecurringJobs()
+            .FirstOrDefault(x => x.Id.Equals(jobId));
+        return recurringJobDto ?? new();
     }
 }

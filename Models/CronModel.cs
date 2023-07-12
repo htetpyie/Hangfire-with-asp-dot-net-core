@@ -10,6 +10,7 @@ public class CronModel
     public string Name { get; set; }
     public string LastTime { get; set; }
     public string NextTime { get; set; }
+    public string StoppedTime { get; set; }
     public bool IsRunning { get; set; }
 
     public string Status

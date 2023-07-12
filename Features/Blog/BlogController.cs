@@ -95,7 +95,7 @@ public class BlogController : Controller
 
     public IActionResult StopCron(string jobId)
     {
-        _cronService.StopRecurringJob(jobId);
+        var cron  = _cronService.StopRecurringJob(jobId);
         // jobIdList.Remove(jobId);
         return RedirectToAction(nameof(Index));
     }

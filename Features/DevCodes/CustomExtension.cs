@@ -6,4 +6,14 @@ public static class CustomExtension
     {
         return str == null || string.IsNullOrEmpty(str);
     }
+
+    public static string GetDateTimeString(this DateTime dateTime)
+    {
+        if (dateTime == null) return "";
+        return TimeZoneInfo
+            .ConvertTimeBySystemTimeZoneId(
+                dateTime,
+                "Myanmar Standard Time")
+            .ToString("f");
+    }
 }
