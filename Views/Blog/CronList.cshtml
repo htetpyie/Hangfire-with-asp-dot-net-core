@@ -5,350 +5,269 @@
 
 <div class="card card-flush">
 <div class="card-header pt-7">
-    <!--begin::Title-->
     <h3 class="card-title align-items-start flex-column">
         <span class="card-label fw-bold text-gray-800">
             Task
             Tracking
         </span>
         <span class="text-gray-400 mt-1 fw-semibold fs-6">
-            @{ int totalTask = Model.RunningCronList.Count + Model.StoppedCronList.Count;}
+            @{ int totalTask = Model.RunningCronList.Count + Model.StoppedCronList.Count; }
             @totalTask @(totalTask > 1 ? "tasks" : "task") in
             progress
         </span>
     </h3>
-    <!--end::Title-->
 </div>
 <div class="card-body pt-4 px-0">
-<!--begin::Nav-->
 <ul
     class="nav nav-pills nav-pills-custom item position-relative mx-9 mb-9">
-    <!--begin::Item-->
     <li class="nav-item col-4 mx-0 p-0">
-        <!--begin::Link-->
         <a class="nav-link active d-flex justify-content-center w-100 border-0 h-100"
            data-bs-toggle="pill" href="#all_tasks">
-            <!--begin::Subtitle-->
             <span class="nav-text text-gray-800 fw-bold fs-6 mb-3">
                 All
             </span>
-            <!--end::Subtitle-->
-
-            <!--begin::Bullet-->
             <span
                 class="bullet-custom position-absolute z-index-2 bottom-0 w-100 h-4px bg-primary rounded">
             </span>
-            <!--end::Bullet-->
         </a>
-        <!--end::Link-->
     </li>
-    <!--end::Item-->
 
-    <!--begin::Item-->
     <li class="nav-item col-4 mx-0 px-0">
-        <!--begin::Link-->
         <a class="nav-link d-flex justify-content-center w-100 border-0 h-100"
            data-bs-toggle="pill" href="#running_tasks">
-            <!--begin::Subtitle-->
             <span class="nav-text text-gray-800 fw-bold fs-6 mb-3">
                 Running
             </span>
-            <!--end::Subtitle-->
-
-            <!--begin::Bullet-->
             <span
                 class="bullet-custom position-absolute z-index-2 bottom-0 w-100 h-4px bg-primary rounded">
             </span>
-            <!--end::Bullet-->
         </a>
-        <!--end::Link-->
     </li>
-    <!--end::Item-->
 
-    <!--begin::Item-->
     <li class="nav-item col-4 mx-0 px-0">
-        <!--begin::Link-->
         <a class="nav-link d-flex justify-content-center w-100 border-0 h-100"
            data-bs-toggle="pill" href="#stopped_tasks">
-            <!--begin::Subtitle-->
             <span class="nav-text text-gray-800 fw-bold fs-6 mb-3">
                 Stopped
             </span>
-            <!--end::Subtitle-->
 
-            <!--begin::Bullet-->
             <span
                 class="bullet-custom position-absolute z-index-2 bottom-0 w-100 h-4px bg-primary rounded">
             </span>
-            <!--end::Bullet-->
         </a>
-        <!--end::Link-->
     </li>
-    <!--end::Item-->
 
-    <!--begin::Bullet-->
     <span
         class="position-absolute z-index-1 bottom-0 w-100 h-4px bg-light rounded">
     </span>
-    <!--end::Bullet-->
 </ul>
-<!--end::Nav-->
 
-<!--begin::Tab Content-->
 <div class="tab-content px-9 hover-scroll-overlay-y pe-7 me-3 mb-2"
      style="height: 370px">
 
-    <div class="tab-pane fade show active " id="all_tasks">
-        @foreach (var item in Model.RunningCronList)
-        {
-            <!--begin::Item-->
-            <div class="m-0">
-                <a href="@item.StopUrl" class="border-hover-danger">
-                    <!--begin::Timeline-->
-                    <div class="timeline ms-n1">
-                        <!--begin::Timeline item-->
-                        <div class="timeline-item align-items-center mb-4">
-
-                            <!--begin::Timeline line-->
-                            <div class="timeline-line w-20px mt-12 mb-n8">
-                            </div>
-                            <!--end::Timeline line-->
-
-                            <!--begin::Timeline icon-->
-                            <div class="timeline-icon pt-1"
-                                 style="margin-left: 0.7px">
-                                <i class="fa-regular fa-clock fs-4 text-success"></i>
-                            </div>
-                            <!--end::Timeline icon-->
-
-                            <!--begin::Timeline content-->
-                            <div class="timeline-content m-0">
-                                <!--begin::Label-->
-                                <div
-                                    class="fs-8 fw-bolder text-success text-uppercase">
-                                    @item.Name
-                                </div>
-                                <!--begin::Label-->
-
-                                <!--begin::Title-->
-                                <span class="fw-semibold text-gray-400">Last Execution : </span>
-                                <span class="fw-semibold text-gray-600">
-                                    @item.LastTime
-                                </span>
-                                <!--end::Title-->
-                            </div>
-                            <!--end::Timeline content-->
+<div class="tab-pane fade show active " id="all_tasks">
+    @foreach (var item in Model.RunningCronList)
+    {
+        <div class="m-0">
+            <a href="@item.StopUrl" class="border-hover-danger">
+                <div class="timeline ms-n1">
+                    <div class="timeline-item align-items-center mb-4">
+                        <div class="timeline-line w-20px mt-12 mb-n8">
                         </div>
-                        <!--end::Timeline item-->
-
-                        <!--begin::Timeline item-->
-                        <div class="timeline-item align-items-center">
-
-                            <!--begin::Timeline line-->
-                            <div class="timeline-line w-20px"></div>
-                            <!--end::Timeline line-->
-
-                            <!--begin::Timeline icon-->
-                            <div class="timeline-icon pt-1"
-                                 style="margin-left: 0.5px">
-                                <i class="fa-regular fa-clock fs-4 text-info"></i>
-                            </div>
-                            <!--end::Timeline icon-->
-
-                            <!--begin::Timeline content-->
-                            <div class="timeline-content m-0">
-                                <!--begin::Label-->
-                                <span
-                                    class="fw-semibold text-gray-400">
-                                    Next Execution :
-                                </span>
-                                <!--begin::Label-->
-                                <!--begin::Title-->
-                                <span class="fw-semibold text-info fs-7">
-                                    @item.NextTime
-                                </span>
-                                <!--end::Title-->
-                            </div>
-                            <!--end::Timeline content-->
+                        <div class="timeline-icon pt-1"
+                             style="margin-left: 0.7px">
+                            <i class="fa-regular fa-clock fs-4 text-success"></i>
                         </div>
-                        <!--end::Timeline item-->
+
+                        <div class="timeline-content m-0">
+                            <div
+                                class="fs-8 fw-bolder text-success text-uppercase">
+                                @item.Name
+                            </div>
+
+                            <span class="fw-semibold text-gray-400">Last Execution : </span>
+                            <span class="fw-semibold text-gray-600">
+                                @item.LastTime
+                            </span>
+                        </div>
                     </div>
-                    <!--end::Timeline-->
-                </a>
-            </div>
-            <!--end::Item-->
-            <div class="separator separator-dashed mt-5 mb-4"></div>
-        }
 
-    </div>
-    
-    <div class="tab-pane fade " id="running_tasks">
-        @foreach (var item in Model.RunningCronList)
-        {
-            <!--begin::Item-->
-            <div class="m-0">
-                <a href="@item.StopUrl" class="border-hover-danger">
-                    <!--begin::Timeline-->
-                    <div class="timeline ms-n1">
-                        <!--begin::Timeline item-->
-                        <div class="timeline-item align-items-center mb-4">
+                    <div class="timeline-item align-items-center">
 
-                            <!--begin::Timeline line-->
-                            <div class="timeline-line w-20px mt-12 mb-n8">
-                            </div>
-                            <!--end::Timeline line-->
+                        <div class="timeline-line w-20px"></div>
 
-                            <!--begin::Timeline icon-->
-                            <div class="timeline-icon pt-1"
-                                 style="margin-left: 0.7px">
-                                <i class="fa-regular fa-clock fs-4 text-success"></i>
-                            </div>
-                            <!--end::Timeline icon-->
-
-                            <!--begin::Timeline content-->
-                            <div class="timeline-content m-0">
-                                <!--begin::Label-->
-                                <div
-                                    class="fs-8 fw-bolder text-success text-uppercase">
-                                    @item.Name
-                                </div>
-                                <!--begin::Label-->
-
-                                <!--begin::Title-->
-                                <span class="fw-semibold text-gray-400">Last Execution : </span>
-                                <span class="fw-semibold text-gray-600">
-                                    @item.LastTime
-                                </span>
-                                <!--end::Title-->
-                            </div>
-                            <!--end::Timeline content-->
+                        <div class="timeline-icon pt-1"
+                             style="margin-left: 0.5px">
+                            <i class="fa-regular fa-clock fs-4 text-info"></i>
                         </div>
-                        <!--end::Timeline item-->
 
-                        <!--begin::Timeline item-->
-                        <div class="timeline-item align-items-center">
-
-                            <!--begin::Timeline line-->
-                            <div class="timeline-line w-20px"></div>
-                            <!--end::Timeline line-->
-
-                            <!--begin::Timeline icon-->
-                            <div class="timeline-icon pt-1"
-                                 style="margin-left: 0.5px">
-                                <i class="fa-regular fa-clock fs-4 text-info"></i>
-                            </div>
-                            <!--end::Timeline icon-->
-
-                            <!--begin::Timeline content-->
-                            <div class="timeline-content m-0">
-                                <!--begin::Label-->
-                                <span
-                                    class="fw-semibold text-gray-400">
-                                    Next Execution :
-                                </span>
-                                <!--begin::Label-->
-                                <!--begin::Title-->
-                                <span class="fw-semibold text-info fs-7">
-                                    @item.NextTime
-                                </span>
-                                <!--end::Title-->
-                            </div>
-                            <!--end::Timeline content-->
+                        <div class="timeline-content m-0">
+                            <span
+                                class="fw-semibold text-gray-400">
+                                Next Execution :
+                            </span>
+                            <span class="fw-semibold text-info fs-7">
+                                @item.NextTime
+                            </span>
                         </div>
-                        <!--end::Timeline item-->
                     </div>
-                    <!--end::Timeline-->
-                </a>
-            </div>
-            <!--end::Item-->
-            <div class="separator separator-dashed mt-5 mb-4"></div>
-        }
-    </div>
-    
-    <div class="tab-pane fade " id="stopped_tasks">
-            @foreach (var item in Model.StoppedCronList)
-            {
-                <!--begin::Item-->
-                <div class="m-0">
-                        <!--begin::Timeline-->
-                        <div class="timeline ms-n1">
-                            <!--begin::Timeline item-->
-                            <div class="timeline-item align-items-center mb-4">
-    
-                                <!--begin::Timeline line-->
-                                <div class="timeline-line w-20px mt-12 mb-n8">
-                                </div>
-                                <!--end::Timeline line-->
-    
-                                <!--begin::Timeline icon-->
-                                <div class="timeline-icon pt-1"
-                                     style="margin-left: 0.7px">
-                                    <i class="fa-regular fa-clock fs-4 text-danger opacity-75"></i>
-                                </div>
-                                <!--end::Timeline icon-->
-    
-                                <!--begin::Timeline content-->
-                                <div class="timeline-content m-0">
-                                    <!--begin::Label-->
-                                    <div
-                                        class="fs-8 fw-bolder text-danger opacity-75 text-uppercase">
-                                        @item.Name
-                                    </div>
-                                    <!--begin::Label-->
-    
-                                    <!--begin::Title-->
-                                    <span class="fw-semibold text-gray-400">Last Execution : </span>
-                                    <span class="fw-semibold text-gray-600">
-                                        @item.LastTime
-                                    </span>
-                                    <!--end::Title-->
-                                </div>
-                                <!--end::Timeline content-->
-                            </div>
-                            <!--end::Timeline item-->
-    
-                            <!--begin::Timeline item-->
-                            <div class="timeline-item align-items-center">
-    
-                                <!--begin::Timeline line-->
-                                <div class="timeline-line w-20px"></div>
-                                <!--end::Timeline line-->
-    
-                                <!--begin::Timeline icon-->
-                                <div class="timeline-icon pt-1"
-                                     style="margin-left: 0.5px">
-                                    <i class="fa-regular fa-clock fs-4 text-info"></i>
-                                </div>
-                                <!--end::Timeline icon-->
-    
-                                <!--begin::Timeline content-->
-                                <div class="timeline-content m-0">
-                                    <!--begin::Label-->
-                                    <span
-                                        class="fw-semibold text-gray-400">
-                                        Stopped Time :
-                                    </span>
-                                    <!--begin::Label-->
-                                    <!--begin::Title-->
-                                    <span class="fw-semibold text-gray-600 fs-7">
-                                        @item.StoppedTime
-                                    </span>
-                                    <!--end::Title-->
-                                </div>
-                                <!--end::Timeline content-->
-                            </div>
-                            <!--end::Timeline item-->
-                        </div>
-                        <!--end::Timeline-->
                 </div>
-                <!--end::Item-->
-    
-    
-                <div class="separator separator-dashed mt-5 mb-4"></div>
-            }
+            </a>
         </div>
-    
+        <div class="separator separator-dashed mt-5 mb-4"></div>
+    }
+
+    @foreach (var item in Model.StoppedCronList)
+    {
+        <div class="m-0">
+            <div class="timeline ms-n1">
+                <div class="timeline-item align-items-center mb-4">
+                    <div class="timeline-line w-20px mt-12 mb-n8">
+                    </div>
+                    <div class="timeline-icon pt-1"
+                         style="margin-left: 0.7px">
+                        <i class="fa-regular fa-clock fs-4 text-danger opacity-75"></i>
+                    </div>
+                    <div class="timeline-content m-0">
+                        <div
+                            class="fs-8 fw-bolder text-danger opacity-75 text-uppercase">
+                            @item.Name
+                        </div>
+                        <span class="fw-semibold text-gray-400">Last Execution : </span>
+                        <span class="fw-semibold text-gray-600">
+                            @item.LastTime
+                        </span>
+                    </div>
+                </div>
+
+                <div class="timeline-item align-items-center">
+
+                    <div class="timeline-line w-20px"></div>
+                    <div class="timeline-icon pt-1"
+                         style="margin-left: 0.5px">
+                        <i class="fa-regular fa-clock fs-4 text-info"></i>
+                    </div>
+
+                    <div class="timeline-content m-0">
+                        <span
+                            class="fw-semibold text-gray-400">
+                            Stopped Time :
+                        </span>
+                        <span class="fw-semibold text-gray-600 fs-7">
+                            @item.StoppedTime
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="separator separator-dashed mt-5 mb-4"></div>
+    }
+
 </div>
-<!--end::Tab Content-->
+
+<div class="tab-pane fade " id="running_tasks">
+    @foreach (var item in Model.RunningCronList)
+    {
+        <div class="m-0">
+            <a href="@item.StopUrl" class="border-hover-danger">
+                <div class="timeline ms-n1">
+                    <div class="timeline-item align-items-center mb-4">
+
+                        <div class="timeline-line w-20px mt-12 mb-n8">
+                        </div>
+                        <div class="timeline-icon pt-1"
+                             style="margin-left: 0.7px">
+                            <i class="fa-regular fa-clock fs-4 text-success"></i>
+                        </div>
+                        <div class="timeline-content m-0">
+                            <div
+                                class="fs-8 fw-bolder text-success text-uppercase">
+                                @item.Name
+                            </div>
+
+                            <span class="fw-semibold text-gray-400">Last Execution : </span>
+                            <span class="fw-semibold text-gray-600">
+                                @item.LastTime
+                            </span>
+                        </div>
+                    </div>
+                    <div class="timeline-item align-items-center">
+
+                        <div class="timeline-line w-20px"></div>
+                        <div class="timeline-icon pt-1"
+                             style="margin-left: 0.5px">
+                            <i class="fa-regular fa-clock fs-4 text-info"></i>
+                        </div>
+
+                        <div class="timeline-content m-0">
+                            <span
+                                class="fw-semibold text-gray-400">
+                                Next Execution :
+                            </span>
+                            <span class="fw-semibold text-info fs-7">
+                                @item.NextTime
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="separator separator-dashed mt-5 mb-4"></div>
+    }
+</div>
+
+<div class="tab-pane fade " id="stopped_tasks">
+    @foreach (var item in Model.StoppedCronList)
+    {
+        <div class="m-0">
+            <div class="timeline ms-n1">
+                <div class="timeline-item align-items-center mb-4">
+
+                    <div class="timeline-line w-20px mt-12 mb-n8">
+                    </div>
+
+                    <div class="timeline-icon pt-1"
+                         style="margin-left: 0.7px">
+                        <i class="fa-regular fa-clock fs-4 text-danger opacity-75"></i>
+                    </div>
+
+                    <div class="timeline-content m-0">
+                        <div
+                            class="fs-8 fw-bolder text-danger opacity-75 text-uppercase">
+                            @item.Name
+                        </div>
+
+                        <span class="fw-semibold text-gray-400">Last Execution : </span>
+                        <span class="fw-semibold text-gray-600">
+                            @item.LastTime
+                        </span>
+                    </div>
+                </div>
+                <div class="timeline-item align-items-center">
+
+                    <div class="timeline-line w-20px"></div>
+
+                    <div class="timeline-icon pt-1"
+                         style="margin-left: 0.5px">
+                        <i class="fa-regular fa-clock fs-4 text-info"></i>
+                    </div>
+
+                    <div class="timeline-content m-0">
+                        <span
+                            class="fw-semibold text-gray-400">
+                            Stopped Time :
+                        </span>
+                        <span class="fw-semibold text-gray-600 fs-7">
+                            @item.StoppedTime
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="separator separator-dashed mt-5 mb-4"></div>
+    }
+</div>
+
+</div>
 </div>
 </div>
