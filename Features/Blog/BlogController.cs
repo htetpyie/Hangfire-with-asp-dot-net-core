@@ -1,12 +1,10 @@
 using System.Diagnostics;
 using System.Linq.Expressions;
-using Hangfire.Storage;
 using HangfireDotNetCoreExample.DbService;
 using HangfireDotNetCoreExample.Features.Cron;
 using HangfireDotNetCoreExample.Features.DevCodes;
 using HangfireDotNetCoreExample.Features.Pagination;
 using HangfireDotNetCoreExample.Features.SignalRHubs;
-using HangfireDotNetCoreExample.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 
@@ -85,13 +83,13 @@ public class BlogController : Controller
         return View(response);
     }
 
-    public  IActionResult RunCron(string cron)
+    public IActionResult RunCron(string cron)
     {
         string jobId = Guid.NewGuid().ToString("N");
         _cronService.CreateRecurringJob(
             jobId, () => CreateOneBlog()
             , cron);
-        
+
         return RedirectToAction(nameof(Index));
     }
 
@@ -152,7 +150,7 @@ public class BlogController : Controller
             throw;
         }
     }
-    
+
     private async Task SendList()
     {
         var list = GetList();
@@ -172,7 +170,11 @@ public class BlogController : Controller
         {
             var searchingExpression = GetExpression(searchParam);
             list = _liteDbService
-                .GetPagination<BlogDataModel>(pageNo, pageSize, searchingExpression);
+                .GetPagination1<BlogDataModel>(
+                    pageNo, 
+                    pageSize,
+                    searchingExpression,
+                    model => model.BlogId);
         }
         catch (Exception e)
         {

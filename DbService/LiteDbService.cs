@@ -1,10 +1,7 @@
 using System.Linq.Expressions;
-using System.Net;
-using System.Reflection.PortableExecutable;
 using HangfireDotNetCoreExample.Features.DevCodes;
 using LiteDB;
 using Microsoft.Extensions.Options;
-using HostingEnvironmentExtensions = Microsoft.AspNetCore.Hosting.HostingEnvironmentExtensions;
 
 namespace HangfireDotNetCoreExample.DbService;
 
@@ -41,6 +38,24 @@ public class LiteDbService
         return list;
     }
 
+    public List<T> GetPagination1<T>(int pageNo,
+        int pageSize,
+        Expression<Func<T, bool>> predicate,
+        Expression<Func<T, int>> keySelector)
+    {
+        int skip = (pageNo - 1) * pageSize;
+        var list = _db.GetCollection<T>()
+            .Query()
+            .OrderByDescending(keySelector)
+            .Where(predicate)
+            .Skip(skip)
+            .Limit(pageSize)
+            .ToList();
+
+        return list;
+    }
+
+
     public int GetTotalRowCount<T>(Expression<Func<T, bool>> predicate)
     {
         return _db.GetCollection<T>().Count(predicate);
@@ -66,9 +81,9 @@ public class LiteDbService
 
     public int DeleteAll<T>()
     {
-         int result = _db.GetCollection<T>()
-             .DeleteAll();
-         return result;
+        int result = _db.GetCollection<T>()
+            .DeleteAll();
+        return result;
     }
 
     private void CreateConnection(IOptions<LiteDbOption> option)

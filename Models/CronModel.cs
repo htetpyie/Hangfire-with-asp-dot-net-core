@@ -1,7 +1,11 @@
-﻿namespace HangfireDotNetCoreExample.Models;
+﻿using LiteDB;
+
+namespace HangfireDotNetCoreExample.Models;
 
 public class CronModel
 {
+    [BsonId]
+    public string Id { get; set; }
     public string JobId { get; set; }
     public string Name { get; set; }
     public string LastTime { get; set; }
