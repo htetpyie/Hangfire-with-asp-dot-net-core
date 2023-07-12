@@ -85,15 +85,12 @@ public class BlogController : Controller
         return View(response);
     }
 
-    public async Task<IActionResult> RunCron(string cron)
+    public  IActionResult RunCron(string cron)
     {
         string jobId = Guid.NewGuid().ToString("N");
         _cronService.CreateRecurringJob(
-            jobId, () => CreateBlog()
+            jobId, () => CreateOneBlog()
             , cron);
-        _cronService.ContinueJobWith(
-            jobId,
-            () => Index()); // added continue job
         
         return RedirectToAction(nameof(Index));
     }
@@ -111,7 +108,27 @@ public class BlogController : Controller
         return RedirectToAction(nameof(Index));
     }
 
-    public async Task CreateBlog()
+    public async Task<IActionResult> CreateOneBlog()
+    {
+        await CreateBlog();
+        return RedirectToAction(nameof(Index));
+    }
+
+    public IActionResult GetCronCount()
+    {
+        CronCountModel model = new();
+        model.RunningCrons = _cronService
+            .GetAllCronList()
+            .Count(x => x.IsRunning)
+            .ToString("N0");
+        model.StoppedCrons = _cronService
+            .GetAllCronList()
+            .Count(x => !x.IsRunning)
+            .ToString("N0");
+        return Json(model);
+    }
+
+    private async Task CreateBlog()
     {
         try
         {
@@ -135,21 +152,7 @@ public class BlogController : Controller
             throw;
         }
     }
-
-    public IActionResult GetCronCount()
-    {
-        CronCountModel model = new();
-        model.RunningCrons = _cronService
-            .GetAllCronList()
-            .Count(x => x.IsRunning)
-            .ToString("N0");
-        model.StoppedCrons = _cronService
-            .GetAllCronList()
-            .Count(x => !x.IsRunning)
-            .ToString("N0");
-        return Json(model);
-    }
-
+    
     private async Task SendList()
     {
         var list = GetList();
