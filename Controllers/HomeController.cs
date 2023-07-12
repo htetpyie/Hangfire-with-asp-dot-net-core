@@ -15,12 +15,12 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        return View();
+        return Json("");
     }
 
     public IActionResult Privacy()
     {
-        return View();
+        return Json("");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

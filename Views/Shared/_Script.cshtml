@@ -8,7 +8,7 @@
 <script>
 
 $(document).ready(function(){
-    
+    SetCountData()
 })
 
  function loadPage(url){
@@ -16,7 +16,19 @@ $(document).ready(function(){
   }
   
 function SetCountData(){
-    $('#runningCrons').html()
-    $('#stoppedCrons').html()
+    
+    $.ajax({
+       url: "/Blog/GetCronCount",
+       type: "Get",
+       dataType: "json",
+       success: function (result) {
+           $('#runningCrons').html(result.runningCrons)
+           $('#stoppedCrons').html(result.stoppedCrons)
+       },
+       error: function (err) {
+           console.error(err);
+       }
+   });
+   
 }
 </script>

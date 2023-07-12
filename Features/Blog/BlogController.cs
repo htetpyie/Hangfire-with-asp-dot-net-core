@@ -91,6 +91,10 @@ public class BlogController : Controller
         _cronService.CreateRecurringJob(
             jobId, () => CreateBlog()
             , cron);
+        _cronService.ContinueJobWith(
+            jobId,
+            () => Index()); // added continue job
+        
         return RedirectToAction(nameof(Index));
     }
 
@@ -237,7 +241,7 @@ public class BlogController : Controller
         int result = 0;
         var list = _liteDbService
             .GetList<BlogDataModel>();
-        if (list != null && list.Count > 0)
+        if (list.Count > 0)
         {
             result = list.Max(x => x.BlogId);
         }

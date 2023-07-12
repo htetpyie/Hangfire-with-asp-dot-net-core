@@ -93,6 +93,14 @@ public class CronService
         }
     }
 
+    public void ContinueJobWith(string jobId, 
+        [InstantHandle, NotNull] Expression<Action> methodCall)
+    {
+        BackgroundJob.ContinueJobWith(
+            jobId,
+            methodCall);
+    }
+
     public List<CronModel> GetAllCronList()
     {
         List<CronModel> list = new();
