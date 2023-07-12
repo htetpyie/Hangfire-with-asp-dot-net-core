@@ -13,7 +13,7 @@
         <span class="text-gray-400 mt-1 fw-semibold fs-6">
             @{ int totalTask = Model.RunningCronList.Count + Model.StoppedCronList.Count; }
             @totalTask @(totalTask > 1 ? "tasks" : "task") in
-            progress
+            total
         </span>
     </h3>
 </div>

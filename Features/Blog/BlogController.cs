@@ -61,6 +61,13 @@ public class BlogController : Controller
         return RedirectToAction(nameof(Index));
     }
 
+    public IActionResult ClearAllTask()
+    {
+        _cronService.RemoveAllRecurringJob();
+        _cronTaskService.DeleteAllTask();
+        return RedirectToAction(nameof(Index));
+    }
+    
     public IActionResult BlogTable(
         int pageNo = 1,
         int pageSize = 10,

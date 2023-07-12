@@ -22,4 +22,9 @@ public class CronTaskService
     {
         return _liteDbService.GetList<CronModel>();
     }
+
+    public void DeleteAllTask()
+    {
+        _liteDbService.DeleteAll<CronModel>();
+    }
 }
