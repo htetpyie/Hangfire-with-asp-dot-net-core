@@ -2,7 +2,6 @@ using System.Diagnostics;
 using System.Linq.Expressions;
 using Hangfire;
 using Hangfire.Annotations;
-using Hangfire.Dashboard.Resources;
 using Hangfire.Storage;
 using HangfireDotNetCoreExample.Features.DevCodes;
 using HangfireDotNetCoreExample.Models;

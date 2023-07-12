@@ -5,14 +5,11 @@ namespace HangfireDotNetCoreExample.Features.Cron;
 
 public class CronTaskService
 {
-    private readonly CronService _cronService;
     private readonly LiteDbService _liteDbService;
 
     public CronTaskService(
-        CronService cronService,
         LiteDbService liteDbService)
     {
-        _cronService = cronService;
         _liteDbService = liteDbService;
     }
 

@@ -24,6 +24,7 @@ builder.Services.AddHangfireServer();
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.AddScoped<CronService>();
 builder.Services.AddSingleton<LiteDbService>();
+builder.Services.AddSingleton<CronTaskService>();
 builder.Services.AddSignalR();
 var app = builder.Build();
 

@@ -15,17 +15,19 @@ public class BlogController : Controller
     private readonly CronService _cronService;
     private readonly LiteDbService _liteDbService;
     private readonly IHubContext<BlogHub> _hubContext;
+    private readonly CronTaskService _cronTaskService;
 
     private static int MaxId { get; set; }
 
     public BlogController(
         CronService cronService,
         LiteDbService liteDbService,
-        IHubContext<BlogHub> hub)
+        IHubContext<BlogHub> hub, CronTaskService cronTaskService)
     {
         _cronService = cronService;
         _liteDbService = liteDbService;
         _hubContext = hub;
+        _cronTaskService = cronTaskService;
     }
 
     public IActionResult Index()
@@ -95,8 +97,8 @@ public class BlogController : Controller
 
     public IActionResult StopCron(string jobId)
     {
-        var cron  = _cronService.StopRecurringJob(jobId);
-        // jobIdList.Remove(jobId);
+        var cron = _cronService.StopRecurringJob(jobId);
+        _cronTaskService.SaveTask(cron);
         return RedirectToAction(nameof(Index));
     }
 
@@ -237,7 +239,9 @@ public class BlogController : Controller
     {
         CronResponseModel model = new();
         var cronList = _cronService.GetAllCronList();
-        model.CronList = cronList;
+        var stoppedList = _cronTaskService.GetAllStoppedTask();
+        model.RunningCronList = cronList;
+        model.StoppedCronList = stoppedList;
         return model;
     }
 

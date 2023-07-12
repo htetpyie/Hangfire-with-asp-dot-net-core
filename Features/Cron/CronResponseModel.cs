@@ -4,5 +4,6 @@ namespace HangfireDotNetCoreExample.Features.Cron;
 
 public class CronResponseModel
 {
-    public List<CronModel> CronList { get; set; }
+    public List<CronModel> RunningCronList { get; set; }
+    public List<CronModel> StoppedCronList { get; set; }
 }
