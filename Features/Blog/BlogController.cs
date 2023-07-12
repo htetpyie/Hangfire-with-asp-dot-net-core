@@ -171,7 +171,7 @@ public class BlogController : Controller
             var searchingExpression = GetExpression(searchParam);
             list = _liteDbService
                 .GetPagination1<BlogDataModel>(
-                    pageNo, 
+                    pageNo,
                     pageSize,
                     searchingExpression,
                     model => model.BlogId);
