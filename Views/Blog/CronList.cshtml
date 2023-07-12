@@ -270,7 +270,6 @@
             {
                 <!--begin::Item-->
                 <div class="m-0">
-                    <a href="@item.StopUrl" class="border-hover-danger">
                         <!--begin::Timeline-->
                         <div class="timeline ms-n1">
                             <!--begin::Timeline item-->
@@ -284,7 +283,7 @@
                                 <!--begin::Timeline icon-->
                                 <div class="timeline-icon pt-1"
                                      style="margin-left: 0.7px">
-                                    <i class="fa-regular fa-clock fs-4 text-success"></i>
+                                    <i class="fa-regular fa-clock fs-4 text-danger opacity-75"></i>
                                 </div>
                                 <!--end::Timeline icon-->
     
@@ -292,7 +291,7 @@
                                 <div class="timeline-content m-0">
                                     <!--begin::Label-->
                                     <div
-                                        class="fs-8 fw-bolder text-success text-uppercase">
+                                        class="fs-8 fw-bolder text-danger opacity-75 text-uppercase">
                                         @item.Name
                                     </div>
                                     <!--begin::Label-->
@@ -327,12 +326,12 @@
                                     <!--begin::Label-->
                                     <span
                                         class="fw-semibold text-gray-400">
-                                        Next Execution :
+                                        Stopped Time :
                                     </span>
                                     <!--begin::Label-->
                                     <!--begin::Title-->
-                                    <span class="fw-semibold text-info fs-7">
-                                        @item.NextTime
+                                    <span class="fw-semibold text-gray-600 fs-7">
+                                        @item.StoppedTime
                                     </span>
                                     <!--end::Title-->
                                 </div>
@@ -341,7 +340,6 @@
                             <!--end::Timeline item-->
                         </div>
                         <!--end::Timeline-->
-                    </a>
                 </div>
                 <!--end::Item-->
     

@@ -116,15 +116,16 @@ public class BlogController : Controller
 
     public IActionResult GetCronCount()
     {
-        CronCountModel model = new();
+        var model = new CronCountModel();
         model.RunningCrons = _cronService
             .GetAllCronList()
             .Count(x => x.IsRunning)
             .ToString("N0");
-        model.StoppedCrons = _cronService
-            .GetAllCronList()
-            .Count(x => !x.IsRunning)
+        model.StoppedCrons = _cronTaskService
+            .GetAllStoppedTask()
+            .Count
             .ToString("N0");
+        
         return Json(model);
     }
 
