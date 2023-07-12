@@ -104,7 +104,8 @@ public class BlogController : Controller
 
     public IActionResult StopAllTasks()
     {
-        _cronService.RemoveAllRecurringJob();
+        var list = _cronService.RemoveAllRecurringJob();
+        list.ForEach(x => _cronTaskService.SaveTask(x));
         return RedirectToAction(nameof(Index));
     }
 

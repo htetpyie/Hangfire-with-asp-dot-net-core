@@ -81,20 +81,26 @@ public class CronService
         return model;
     }
 
-    public void RemoveAllRecurringJob()
+    public List<CronModel> RemoveAllRecurringJob()
     {
+        List<CronModel> cronList = new();
         try
         {
             using var connection = JobStorage.Current.GetConnection();
             foreach (var recurringJob in connection.GetRecurringJobs())
             {
-                RecurringJob.RemoveIfExists(recurringJob.Id);
+                string jobId = recurringJob.Id;
+                var cron =  GetCronModelByJobId(jobId);
+                cronList.Add(cron);
+                
+                RecurringJob.RemoveIfExists(jobId);
             }
         }
         catch (Exception ex)
         {
             Debug.Write("Exception in Remove Jobs" + ex.Message);
         }
+        return cronList;
     }
     
     public void DeleteBackgroundJob(string jobId)
