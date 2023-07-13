@@ -12,14 +12,26 @@ https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js
 
 $(document).ready(function(){
     SetCountData()
+    settingNotiflix();
 })
+
+$('#stopAllTasksBtn').on("click",() => {
+        confirmAlert("Are you sure to stop all tasks?","/Blog/StopAllTasks")
+        });
+
+$('#clearListBtn').on("click",() => {
+        confirmAlert("Are you sure to delete all blog lists?","/Blog/ClearAllList")
+        });
+
+$('#clearAllTasksBtn').on("click",() => {
+        confirmAlert("Are you sure to delete all cron tasks?","/Blog/ClearAllTask")
+        });
 
  function loadPage(url){
      $('#blogTable').load(url);
   }
   
 function SetCountData(){
-    
     $.ajax({
        url: "/Blog/GetCronCount",
        type: "Get",
@@ -32,6 +44,32 @@ function SetCountData(){
            console.error(err);
        }
    });
-   
+}
+
+function settingNotiflix(){
+    Notiflix.Confirm.init({
+        backgroundColor: '#1E1E2D',
+        buttonsMaxLength: 20,
+        borderRadius: "15px",
+        buttonsFontSize: "12px",
+        position: "center-top",
+        titleColor: "#BC385C",
+        messageColor: "#CDCDDE",
+        messageFontSize: "13px",
+        okButtonBackground: "transparent",
+        okButtonColor:"#F1416C",
+        cancelButtonColor:"",
+        cancelButtonBackground:"#565674"
+        })
+}
+
+function confirmAlert(message,link){
+    Notiflix.Confirm.show(
+            'HANGFIRE APP',
+            message,
+            'Yes',
+            'No',
+            () => {window.location.href = link},
+        )
 }
 </script>
