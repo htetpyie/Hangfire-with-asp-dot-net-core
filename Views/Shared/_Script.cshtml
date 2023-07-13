@@ -1,9 +1,7 @@
 ﻿<script src="~/js/signalr/dist/browser/signalr.js"></script>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.16/dist/sweetalert2.all.min.js"></script>
-<script src="
-https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js
-"></script>
+<script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js"></script>
 <script src="~/theme/assets/plugins/global/plugins.bundle.js"></script>
 <script src="~/theme/assets/js/scripts.bundle.js"></script>
 <script src="~/theme/assets/js/widgets.bundle.js"></script>
@@ -13,6 +11,7 @@ https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js
 $(document).ready(function(){
     SetCountData()
     settingNotiflix();
+    confirmAlert("NIce","")
 })
 
 $('#stopAllTasksBtn').on("click",() => {
@@ -49,7 +48,6 @@ function SetCountData(){
 function settingNotiflix(){
     Notiflix.Confirm.init({
         backgroundColor: '#1E1E2D',
-        buttonsMaxLength: 20,
         borderRadius: "15px",
         buttonsFontSize: "12px",
         position: "center-top",
@@ -59,7 +57,9 @@ function settingNotiflix(){
         okButtonBackground: "transparent",
         okButtonColor:"#F1416C",
         cancelButtonColor:"",
-        cancelButtonBackground:"#565674"
+        cancelButtonBackground:"#565674",
+        distance: "20px",
+        width: "330px"
         })
 }
 
