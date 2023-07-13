@@ -1,5 +1,14 @@
-### Hangfire App
+## Hangfire App
 ***This app is created for testing hangfire with dotnet core.***
+
+#### Functions
+* hangfire task that insert blog table according to cron expression
+* task termination (all or specific)
+* task management (stopped, running, count)
+* blog list generation 
+* blog list deletion
+* pagination and searching
+
 #### Used Technologies
 1. [Hangfire](https://www.hangfire.io/)
 2. .Net 7
@@ -10,4 +19,4 @@
 
 #### Refrences
 * [Theme](https://preview.keenthemes.com/metronic8/demo23/account/settings.html)
-* [Cron Expression Sample](https://crontab.guru/#0_*/1_*_*_*)
+* [Cron expression sample](https://crontab.guru/#0_*/1_*_*_*)
