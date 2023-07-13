@@ -36,12 +36,15 @@
              data-kt-scroll="true" data-kt-scroll-activate="true" data-kt-scroll-height="auto"
              data-kt-scroll-dependencies="#kt_app_sidebar_logo, #kt_app_sidebar_footer"
              data-kt-scroll-wrappers="#kt_app_sidebar, #kt_app_sidebar_nav" data-kt-scroll-offset="5px">
-
+            <div>
+                <span class="fs-7 text-muted">You can get cron expression</span>
+                <a href="https://crontab.guru/#0_*/1_*_*_*" target="_blank" class="text-info fs-7"> here.</a>
+            </div>
             <div class="row">
                 <div class="col-md-12">
                     <form class="form-inline" asp-action="RunCron" asp-controller="Blog">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control form-control-sm" placeholder="Cron Expression" name="cron">
+                            <input type="text" class="form-control form-control-sm" placeholder="Cron Expression ( eg. 1 * * * * )" name="cron">
                             <button class="btn btn-sm btn-light btn-success" type="submit" id="create">Run</button>
                         </div>
                     </form>
