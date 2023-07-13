@@ -2,3 +2,10 @@ a#NXConfirmButtonOk:hover {
   background: #e76081 !important;
   color: #ebd9d9 !important;
 }
+.successBox a#NXConfirmButtonOk:hover {
+  background: #308b61 !important;
+}
+.successBox a#NXConfirmButtonCancel:hover {
+  background: #e76081 !important;
+  color: #ebd9d9 !important;
+}

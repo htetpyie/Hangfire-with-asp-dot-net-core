@@ -9,9 +9,7 @@
 <script>
 
 $(document).ready(function(){
-    SetCountData()
-    settingNotiflix();
-    confirmAlert("NIce","")
+    SetCountData()   
 })
 
 $('#stopAllTasksBtn').on("click",() => {
@@ -64,6 +62,7 @@ function settingNotiflix(){
 }
 
 function confirmAlert(message,link){
+    settingNotiflix();
     Notiflix.Confirm.show(
             'HANGFIRE APP',
             message,
@@ -72,4 +71,33 @@ function confirmAlert(message,link){
             () => {window.location.href = link},
         )
 }
+
+function confirmSuccess(){
+     Notiflix.Confirm.init({
+         className:"successBox",
+         rtl: true,
+         backgroundColor: '#1E1E2D',
+         borderRadius: "15px",
+         buttonsFontSize: "12px",
+         position: "center-top",
+         titleColor: "#75b798",
+         messageColor: "#CDCDDE",
+         messageFontSize: "13px",
+         okButtonBackground: "#308b61",
+         okButtonColor:"#E1E3EA",
+         cancelButtonColor:"#F1416C",
+         cancelButtonBackground:"transparent",
+         distance: "20px",
+         width: "330px"
+         })
+     Notiflix.Confirm.show(
+         'HANGFIRE APP',
+         "Ok",
+         'Ok',
+         'Cancel',
+         () => {window.location.href = ""},
+         
+     )
+}
+
 </script>
