@@ -4,13 +4,15 @@
     <title>Hangfire App</title>
     <meta charset="utf-8"/>
     <link rel="shortcut icon" href="~/img/zoro.jpg"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.16/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700"/> <!--end::Fonts-->
+    <link href="https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-3.2.6.min.css" rel="stylesheet">
     <link href="~/theme/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css"/>
     <link href="~/theme/assets/css/style.bundle.css" rel="stylesheet" type="text/css"/>
 </head>
 
-<body id="kt_app_body" data-kt-app-sidebar-enabled="true" data-kt-app-sidebar-fixed="true" 
+<body id="kt_app_body" data-kt-app-sidebar-enabled="true" data-kt-app-sidebar-fixed="true"
       data-kt-app-sidebar-push-header="true" data-kt-app-sidebar-push-toolbar="true"
       data-kt-app-sidebar-push-footer="true" class="app-default">
 
@@ -32,7 +34,7 @@
     </div>
 </div>
 <div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
-   <i class="fa-solid fa-chevron-up"></i>
+    <i class="fa-solid fa-chevron-up"></i>
 </div>
 
 @await Html.PartialAsync("_Script")
