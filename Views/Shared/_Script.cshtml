@@ -12,6 +12,11 @@ $(document).ready(function(){
     SetCountData()   
 })
 
+
+$('#generateListBtn').on("click",() => {
+        confirmSuccess("This will generate 50 lists.","/Blog/GenerateList")
+        });
+
 $('#stopAllTasksBtn').on("click",() => {
         confirmAlert("Are you sure to stop all tasks?","/Blog/StopAllTasks")
         });
@@ -72,10 +77,9 @@ function confirmAlert(message,link){
         )
 }
 
-function confirmSuccess(){
+function confirmSuccess(message, link){
      Notiflix.Confirm.init({
          className:"successBox",
-         rtl: true,
          backgroundColor: '#1E1E2D',
          borderRadius: "15px",
          buttonsFontSize: "12px",
@@ -83,19 +87,20 @@ function confirmSuccess(){
          titleColor: "#75b798",
          messageColor: "#CDCDDE",
          messageFontSize: "13px",
-         okButtonBackground: "#308b61",
-         okButtonColor:"#E1E3EA",
-         cancelButtonColor:"#F1416C",
-         cancelButtonBackground:"transparent",
+         cancelButtonBackground: "#308b61",
+         cancelButtonColor:"#E1E3EA",
+         okButtonColor:"#F1416C",
+         okButtonBackground:"transparent",
          distance: "20px",
          width: "330px"
          })
      Notiflix.Confirm.show(
          'HANGFIRE APP',
-         "Ok",
-         'Ok',
+         message,
          'Cancel',
-         () => {window.location.href = ""},
+         'Ok',
+         () => {},
+         () => {window.location.href = link},
          
      )
 }
